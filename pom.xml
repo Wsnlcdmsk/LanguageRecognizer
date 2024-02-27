@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.project</groupId>
-	<artifactId>LangRecognizer</artifactId>
+	<artifactId>langrecognizer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>LangRecognizer</name>
 	<description>Demo project for Spring Boot</description>

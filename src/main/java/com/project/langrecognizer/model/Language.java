@@ -1,4 +1,4 @@
-package com.project.LangRecognizer.model;
+package com.project.langrecognizer.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

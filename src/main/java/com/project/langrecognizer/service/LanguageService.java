@@ -1,11 +1,10 @@
-package com.project.LangRecognizer.service;
+package com.project.langrecognizer.service;
 
-import com.project.LangRecognizer.model.Language;
-import org.springframework.stereotype.Service;
+import com.project.langrecognizer.model.Language;
 
 import java.util.List;
 
 public interface LanguageService {
 String paigSatus();
-Language findNameOfLanguage(List<String> Text);
+Language findNameOfLanguage(List<String> text);
 }

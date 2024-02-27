@@ -1,9 +1,9 @@
-package com.project.LangRecognizer.controller;
+package com.project.langrecognizer.controller;
 
-import com.project.LangRecognizer.model.Language;
+import com.project.langrecognizer.model.Language;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import com.project.LangRecognizer.service.LanguageService;
+import com.project.langrecognizer.service.LanguageService;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ public class LanguageController {
         return service.paigSatus();
     }
 
-    @GetMapping("/{Text}")
-    public Language findNameOfLanguage(@PathVariable List<String> Text){
+    @GetMapping("/{text}")
+    public Language findNameOfLanguage(@PathVariable List<String> text){
 
-        return service.findNameOfLanguage(Text);
+        return service.findNameOfLanguage(text);
     }
 }

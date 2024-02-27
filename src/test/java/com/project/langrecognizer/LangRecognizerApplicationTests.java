@@ -1,13 +1,9 @@
-package com.project.LangRecognizer;
+package com.project.langrecognizer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class LangRecognizerApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
 
 }
