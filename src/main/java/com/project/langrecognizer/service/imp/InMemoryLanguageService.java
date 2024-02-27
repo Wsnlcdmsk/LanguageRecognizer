@@ -1,4 +1,4 @@
-package com.project.langrecognizer.service.impl;
+package com.project.langrecognizer.service.imp;
 
 import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.service.LanguageService;
