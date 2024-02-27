@@ -1,4 +1,4 @@
-package com.project.langrecognizer.service.Impl;
+package com.project.langrecognizer.service.impl;
 
 import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.service.LanguageService;
@@ -17,7 +17,6 @@ public class InMemoryLanguageService implements LanguageService {
     }
 
     public Language findNameOfLanguage(List<String> text){
-        Language language = new Language(text, "English");
-        return language;
+        return new Language(text, "English");
     }
 }
