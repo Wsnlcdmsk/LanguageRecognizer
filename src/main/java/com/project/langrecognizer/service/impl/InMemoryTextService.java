@@ -34,7 +34,7 @@ public class InMemoryTextService implements TextService {
     }
 
     @Override
-    public Text getTextByContent(String content) {
+    public List<Text> getTextByContent(String content) {
         return repository.findByContent(content);
     }
 
@@ -55,7 +55,4 @@ public class InMemoryTextService implements TextService {
         return repository.save(existingText);
     }
 
-    public List<String> findTagsSortedByText(String tag){
-        return repository.findTagsSortedByText(tag);
-    }
 }

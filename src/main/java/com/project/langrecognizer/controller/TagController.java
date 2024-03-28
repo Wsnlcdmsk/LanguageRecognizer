@@ -32,14 +32,14 @@ public class TagController {
         return service.getTags();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getTagById/{id}")
     public Tag getTagById(@PathVariable Long id)
     {
         return service.getTagById(id);
     }
 
-    @GetMapping("/{name}")
-    public Tag getTagByName(@PathVariable String name)
+    @GetMapping("/getTagByContent/{name}")
+    public List<Tag> getTagByName(@PathVariable String name)
     {
         return service.getTagByName(name);
     }

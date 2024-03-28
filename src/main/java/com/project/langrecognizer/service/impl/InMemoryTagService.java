@@ -35,7 +35,7 @@ public class InMemoryTagService implements  TagService{
     }
 
     @Override
-    public Tag getTagByName(String name) {
+    public List<Tag> getTagByName(String name) {
         return repository.findByName(name);
     }
 

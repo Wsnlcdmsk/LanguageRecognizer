@@ -9,7 +9,7 @@ public interface TagService {
     List<Tag> saveTags(List<Tag> tags);
     List<Tag> getTags();
     Tag getTagById(Long id);
-    Tag getTagByName(String name);
+    List<Tag> getTagByName(String name);
     String deleteTag(Long id);
     Tag updateTag(Tag tag);
 }

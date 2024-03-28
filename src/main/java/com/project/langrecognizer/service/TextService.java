@@ -9,8 +9,7 @@ public interface TextService {
     List<Text> saveTexts(List<Text> texts);
     List<Text> getTexts();
     Text getTextById(Long id);
-    Text getTextByContent(String content);
+    List<Text> getTextByContent(String content);
     String deleteText(Long id);
     Text updateText(Text text);
-    List<String> findTagsSortedByText(String tag);
 }

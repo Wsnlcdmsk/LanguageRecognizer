@@ -32,14 +32,14 @@ public class TextController {
         return service.getTexts();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getTextById/{id}")
     public Text getTextById(@PathVariable Long id)
     {
         return service.getTextById(id);
     }
 
-    @GetMapping("/{content}")
-    public Text getTextByContent(@PathVariable String content)
+    @GetMapping("/getTextByContent/{content}")
+    public List<Text> getTextByContent(@PathVariable String content)
     {
         return service.getTextByContent(content);
     }
@@ -54,11 +54,5 @@ public class TextController {
     public Text updateText(@RequestBody Text text)
     {
         return service.updateText(text);
-    }
-
-    @GetMapping("/findByTag/sort/{tag}")
-    public ResponseEntity<List<String>> getTagsSortedByText(@PathVariable("tag") String tag){
-        List<String> texts = service.findTagsSortedByText(tag);
-        return ResponseEntity.ok(texts);
     }
 }

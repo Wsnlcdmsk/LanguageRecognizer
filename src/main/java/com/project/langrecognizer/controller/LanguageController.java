@@ -35,13 +35,13 @@ public class LanguageController {
         return service.getLanguages();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getLanguageById/{id}")
     public Language getLanguageById(@PathVariable Long id) {
         return service.getLanguageById(id);
     }
 
-    @GetMapping("/{name}")
-    public Language getLanguageByName(@PathVariable String name) {
+    @GetMapping("/getLanguageByName/{name}")
+    public List<Language> getLanguageByName(@PathVariable String name) {
         return service.getLanguageByName(name);
     }
 

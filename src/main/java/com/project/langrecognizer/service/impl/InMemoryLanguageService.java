@@ -68,12 +68,8 @@ public class InMemoryLanguageService implements LanguageService {
     }
 
     @Override
-    public Language getLanguageByName(String name) {
-        Language findLanguage = languageRepository.findByName(name);
-        if (findLanguage != null) {
-            cache.saveCached(findLanguage.getId(), findLanguage);
-        }
-        return findLanguage;
+    public List<Language> getLanguageByName(String name) {
+        return languageRepository.findByName(name);
     }
 
     @Override
