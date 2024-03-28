@@ -8,21 +8,50 @@ import com.project.langrecognizer.service.LanguageService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/languages")
+@RequestMapping("/api/v1/language")
 @AllArgsConstructor
 public class LanguageController {
 
     private final LanguageService service;
 
     @GetMapping
-    public String paigSatus()
+    public String pageStatus()
     {
-        return service.paigSatus();
+        return service.pageStatus();
     }
 
-    @GetMapping("/{text}")
-    public Language findNameOfLanguage(@PathVariable List<String> text){
+   @PostMapping("/saveLanguage")
+    public Language saveLanguage(@RequestBody Language language) {
+        return service.saveLanguage(language);
+    }
 
-        return service.findNameOfLanguage(text);
+    @PostMapping("/saveLanguages")
+    public List<Language> saveLanguages(@RequestBody List<Language> languages) {
+        return service.saveLanguages(languages);
+    }
+
+    @GetMapping("/getLanguages")
+    public List<Language> getLanguages() {
+        return service.getLanguages();
+    }
+
+    @GetMapping("/{id}")
+    public Language getLanguageById(@PathVariable Long id) {
+        return service.getLanguageById(id);
+    }
+
+    @GetMapping("/{name}")
+    public Language getLanguageByName(@PathVariable String name) {
+        return service.getLanguageByName(name);
+    }
+
+    @DeleteMapping ("/delete/{id}")
+    public String deleteLanguage(@PathVariable Long id) {
+        return service.deleteLanguage(id);
+    }
+
+    @PutMapping("/update")
+    public Language updateLanguage(@RequestBody Language language) {
+        return service.updateLanguage(language);
     }
 }

@@ -1,15 +1,21 @@
 package com.project.langrecognizer.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Builder
-@AllArgsConstructor
+@Entity
 public class Language {
-    private List<String> textOfLanguage;
-    private String nameOfLanguage;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private String name;
+    @OneToMany(mappedBy = "language")
+    @JsonIgnoreProperties("language")
+    private List<Text> texts = new ArrayList<>();
 }
