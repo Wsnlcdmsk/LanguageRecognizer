@@ -9,7 +9,7 @@ public interface TextService {
     List<Text> saveTexts(List<Text> texts);
     List<Text> getTexts();
     Text getTextById(Long id);
-    List<Text> getTextByContent(String content);
+    Text getTextByContent(String content);
     String deleteText(Long id);
     Text updateText(Text text);
 }

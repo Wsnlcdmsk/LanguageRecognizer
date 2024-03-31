@@ -1,6 +1,8 @@
 package com.project.langrecognizer.controller;
 
 import com.project.langrecognizer.model.Language;
+import com.project.langrecognizer.service.ExternalApiService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.project.langrecognizer.service.LanguageService;
@@ -12,46 +14,46 @@ import java.util.List;
 @AllArgsConstructor
 public class LanguageController {
 
-    private final LanguageService service;
+    private final LanguageService languageService;
 
     @GetMapping
     public String pageStatus()
     {
-        return service.pageStatus();
+        return languageService.pageStatus();
     }
 
    @PostMapping("/saveLanguage")
-    public Language saveLanguage(@RequestBody Language language) {
-        return service.saveLanguage(language);
+    public Language saveLanguage(@Valid @RequestBody  Language language) {
+        return languageService.saveLanguage(language);
     }
 
     @PostMapping("/saveLanguages")
-    public List<Language> saveLanguages(@RequestBody List<Language> languages) {
-        return service.saveLanguages(languages);
+    public List<Language> saveLanguages(@Valid @RequestBody List<Language> languages) {
+        return languageService.saveLanguages(languages);
     }
 
     @GetMapping("/getLanguages")
     public List<Language> getLanguages() {
-        return service.getLanguages();
+        return languageService.getLanguages();
     }
 
     @GetMapping("/getLanguageById/{id}")
-    public Language getLanguageById(@PathVariable Long id) {
-        return service.getLanguageById(id);
+    public Language getLanguageById(@Valid @PathVariable Long id) {
+        return languageService.getLanguageById(id);
     }
 
     @GetMapping("/getLanguageByName/{name}")
-    public List<Language> getLanguageByName(@PathVariable String name) {
-        return service.getLanguageByName(name);
+    public List<Language> getLanguageByName(@Valid @PathVariable String name) {
+        return languageService.getLanguageByName(name);
     }
 
     @DeleteMapping ("/delete/{id}")
-    public String deleteLanguage(@PathVariable Long id) {
-        return service.deleteLanguage(id);
+    public String deleteLanguage(@Valid @PathVariable Long id) {
+        return languageService.deleteLanguage(id);
     }
 
     @PutMapping("/update")
-    public Language updateLanguage(@RequestBody Language language) {
-        return service.updateLanguage(language);
+    public Language updateLanguage(@Valid @RequestBody Language language) {
+        return languageService.updateLanguage(language);
     }
 }

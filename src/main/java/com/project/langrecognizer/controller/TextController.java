@@ -39,7 +39,7 @@ public class TextController {
     }
 
     @GetMapping("/getTextByContent/{content}")
-    public List<Text> getTextByContent(@PathVariable String content)
+    public Text getTextByContent(@PathVariable String content)
     {
         return service.getTextByContent(content);
     }
