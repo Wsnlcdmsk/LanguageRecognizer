@@ -24,8 +24,8 @@ public class ExternalApiService{
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(API_URL))
                 .POST(HttpRequest.BodyPublishers.ofString("{\"text\": \"" + text + "\"}"))
-                .header("Content-Type", "application/json")
-                .header("apy-token", API_TOKEN)
+                .setHeader("Content-Type", "application/json")
+                .setHeader("apy-token", API_TOKEN)
                 .build();
 
         try {
@@ -36,6 +36,11 @@ public class ExternalApiService{
             Language language = new Language();
             language.setName(detectedLanguage);
             return language;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Re-interrupt the current thread
+            Language language = new Language();
+            language.setName("An error occurred");
+            return language;
         } catch (Exception e) {
             e.printStackTrace();
             Language language = new Language();
@@ -43,6 +48,7 @@ public class ExternalApiService{
             return language;
         }
     }
+
 }
 
 
