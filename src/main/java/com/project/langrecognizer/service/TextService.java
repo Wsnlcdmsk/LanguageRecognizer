@@ -1,5 +1,7 @@
 package com.project.langrecognizer.service;
 
+import com.project.langrecognizer.model.Language;
+import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.model.Text;
 
 import java.util.List;
