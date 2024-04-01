@@ -4,7 +4,6 @@ import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.service.TagService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

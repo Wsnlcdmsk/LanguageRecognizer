@@ -1,7 +1,6 @@
 package com.project.langrecognizer.controller;
 
 import com.project.langrecognizer.model.Language;
-import com.project.langrecognizer.service.ExternalApiService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -32,6 +32,10 @@ public class ExternalApiService{
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(response.body()).get("data");
+            if(jsonNode == null)
+            {
+                throw new Exception () ;
+            }
             String detectedLanguage = jsonNode.get("language").asText();
             Language language = new Language();
             language.setName(detectedLanguage);

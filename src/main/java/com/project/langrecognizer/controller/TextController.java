@@ -3,7 +3,6 @@ package com.project.langrecognizer.controller;
 import com.project.langrecognizer.model.Text;
 import com.project.langrecognizer.service.TextService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
