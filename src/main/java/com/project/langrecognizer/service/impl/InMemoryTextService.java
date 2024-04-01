@@ -1,6 +1,5 @@
 package com.project.langrecognizer.service.impl;
 
-import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.model.Text;
 import com.project.langrecognizer.repository.TextRepository;
@@ -56,6 +55,7 @@ public class InMemoryTextService implements TextService {
         tag.setTexts(texts);
         tags.add(tag);
         externalText.setTags(tags);
+        repository.save(externalText);
         return externalText;
     }
 
