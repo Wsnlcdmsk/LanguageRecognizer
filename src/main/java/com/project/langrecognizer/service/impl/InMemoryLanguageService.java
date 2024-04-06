@@ -1,6 +1,8 @@
 package com.project.langrecognizer.service.impl;
 
 import com.project.langrecognizer.cache.Cache;
+import com.project.langrecognizer.dto.LanguageDTO;
+import com.project.langrecognizer.mapper.LanguageMapper;
 import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.repository.LanguageRepository;
 import com.project.langrecognizer.repository.TextRepository;
@@ -22,6 +24,7 @@ public class InMemoryLanguageService implements LanguageService {
     private LanguageRepository languageRepository;
     private TextRepository textRepository;
     private Cache<Language, Long> cache;
+    private LanguageMapper mapper;
 
     @Autowired
     public InMemoryLanguageService(LanguageRepository languageRepository,TextRepository textRepository) {
@@ -36,19 +39,19 @@ public class InMemoryLanguageService implements LanguageService {
     }
 
     @Override
-    public Language saveLanguage(Language language) {
-        Language savedLanguage = languageRepository.save(language);
-        this.cache.saveCached(language.getId(), language);
-        return savedLanguage;
+    public LanguageDTO saveLanguage(LanguageDTO languageDTO) {
+        languageRepository.save(mapper.toEntity(languageDTO));
+        this.cache.saveCached(languageDTO.getId(), mapper.toEntity(languageDTO));
+        return languageDTO;
     }
 
     @Override
-    public List<Language> saveLanguages(List<Language> languages) {
-        for(Language language:languages)
+    public List<LanguageDTO> saveLanguages(List<LanguageDTO> languagesDTO) {
+        for(LanguageDTO languageDTO:languagesDTO)
         {
-            cache.saveCached(language.getId(), language);
+            cache.saveCached(languageDTO.getId(), mapper.toEntity(languageDTO));
         }
-        return languageRepository.saveAll(languages);
+        return languagesDTO;
     }
 
     @Override
@@ -85,14 +88,15 @@ public class InMemoryLanguageService implements LanguageService {
     }
 
     @Override
-    public Language updateLanguage(Language language) {
-        Language existingLanguage = languageRepository.findById(language.getId()).orElse(null);
+    public LanguageDTO updateLanguage(LanguageDTO languageDTO) {
+        Language existingLanguage = languageRepository.findById(languageDTO.getId()).orElse(null);
         assert existingLanguage != null;
-        existingLanguage.setName(language.getName());
-        existingLanguage.setTexts(language.getTexts());
-        languageRepository.deleteById(language.getId());
-        cache.deleteCachedById(language.getId());
-        cache.saveCached(language.getId(), language);
-        return languageRepository.save(existingLanguage);
+        existingLanguage.setName(languageDTO.getName());
+        existingLanguage.setTexts(languageDTO.getTexts());
+        languageRepository.deleteById(languageDTO.getId());
+        cache.deleteCachedById(languageDTO.getId());
+        cache.saveCached(languageDTO.getId(), existingLanguage);
+        languageRepository.save(existingLanguage);
+        return languageDTO;
     }
 }

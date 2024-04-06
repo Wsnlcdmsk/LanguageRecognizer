@@ -18,7 +18,7 @@ public class Language {
     private Long id;
     @Column
     private String name;
-    @OneToMany(mappedBy = "language")
+    @OneToMany(mappedBy = "language", cascade = {CascadeType.MERGE, CascadeType.PERSIST} )
     @JsonIgnoreProperties("language")
     private List<Text> texts = new ArrayList<>();
 }

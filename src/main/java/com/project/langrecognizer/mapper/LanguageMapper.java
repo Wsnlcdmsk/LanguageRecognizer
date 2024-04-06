@@ -5,6 +5,9 @@ import com.project.langrecognizer.model.Language;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class LanguageMapper {
 
@@ -22,5 +25,28 @@ public class LanguageMapper {
         language.setName(languageDTO.getName());
         language.setTexts(languageDTO.getTexts());
         return language;
+    }
+    public List<LanguageDTO> toDTOs(final @NonNull List<Language> languages) {
+        List<LanguageDTO> languageDTOs = new ArrayList<>();
+        LanguageDTO languageDTO = new LanguageDTO();
+        for(Language language:languages) {
+            languageDTO.setId(language.getId());
+            languageDTO.setName(language.getName());
+            languageDTO.setTexts(language.getTexts());
+            languageDTOs.add(languageDTO);
+        }
+        return languageDTOs;
+    }
+
+    public List<Language> toEntitys(final @NonNull List<LanguageDTO> languageDTOs) {
+        List<Language> languages = new ArrayList<>();
+        Language language = new Language();
+        for(LanguageDTO languageDTO:languageDTOs) {
+            language.setId(languageDTO.getId());
+            language.setName(languageDTO.getName());
+            language.setTexts(languageDTO.getTexts());
+            languages.add(language);
+        }
+        return languages;
     }
 }

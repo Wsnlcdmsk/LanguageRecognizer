@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface TagRepository extends JpaRepository<Tag,Long> {
-    @Query(value = "SELECT * FROM tag WHERE name = :name", nativeQuery = true)
-    List<Tag> findByName(@Param("name") String name);
+    List<Tag> findByName(String name);
 }

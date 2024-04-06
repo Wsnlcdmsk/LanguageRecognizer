@@ -1,5 +1,6 @@
 package com.project.langrecognizer.controller;
 
+import com.project.langrecognizer.dto.TagDTO;
 import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.service.TagService;
 import jakarta.validation.Valid;
@@ -15,15 +16,15 @@ public class TagController {
     private TagService service;
 
     @PostMapping("/saveTag")
-    public Tag saveTag(@Valid @RequestBody Tag tag)
+    public TagDTO saveTag(@Valid @RequestBody TagDTO tagDTO)
     {
-        return service.saveTag(tag);
+        return service.saveTag(tagDTO);
     }
 
     @PostMapping("/saveTags")
-    public List<Tag> saveTags(@Valid @RequestBody List<Tag> tags)
+    public List<TagDTO> saveTags(@Valid @RequestBody List<TagDTO> tagsDTO)
     {
-        return service.saveTags(tags);
+        return service.saveTags(tagsDTO);
     }
 
     @GetMapping("/getTags")
@@ -51,8 +52,8 @@ public class TagController {
     }
 
     @PutMapping("/update")
-    public Tag updateTag(@Valid @RequestBody Tag tag)
+    public TagDTO updateTag(@Valid @RequestBody TagDTO tagDTO)
     {
-        return service.updateTag(tag);
+        return service.updateTag(tagDTO);
     }
 }

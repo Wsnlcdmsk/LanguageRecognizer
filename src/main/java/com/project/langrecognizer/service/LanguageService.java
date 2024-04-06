@@ -1,16 +1,17 @@
 package com.project.langrecognizer.service;
 
+import com.project.langrecognizer.dto.LanguageDTO;
 import com.project.langrecognizer.model.Language;
 
 import java.util.List;
 
 public interface LanguageService {
 String pageStatus();
-Language saveLanguage(Language language);
-List<Language> saveLanguages(List<Language> languages);
+LanguageDTO saveLanguage(LanguageDTO languageDTO);
+List<LanguageDTO> saveLanguages(List<LanguageDTO> languagesDTO);
 List<Language> getLanguages();
 Language getLanguageById(Long id);
 List<Language> getLanguageByName(String name);
 String deleteLanguage(Long id);
-Language updateLanguage(Language language);
+LanguageDTO updateLanguage(LanguageDTO languageDTO);
 }

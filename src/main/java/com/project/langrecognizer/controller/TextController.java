@@ -1,5 +1,6 @@
 package com.project.langrecognizer.controller;
 
+import com.project.langrecognizer.dto.TextDTO;
 import com.project.langrecognizer.model.Text;
 import com.project.langrecognizer.service.TextService;
 import lombok.AllArgsConstructor;
@@ -14,15 +15,15 @@ public class TextController {
     private TextService service;
 
     @PostMapping("/saveText")
-    public Text saveText(@RequestBody Text text)
+    public TextDTO saveText(@RequestBody TextDTO textDTO)
     {
-        return service.saveText(text);
+        return service.saveText(textDTO);
     }
 
     @PostMapping("/saveTexts")
-    public List<Text> saveTexts(@RequestBody List<Text> texts)
+    public List<TextDTO> saveTexts(@RequestBody List<TextDTO> textsDTO)
     {
-        return service.saveTexts(texts);
+        return service.saveTexts(textsDTO);
     }
 
     @GetMapping("/getTexts")
@@ -50,8 +51,14 @@ public class TextController {
     }
 
     @PutMapping("/update")
-    public Text updateText(@RequestBody Text text)
+    public TextDTO updateText(@RequestBody TextDTO textDTO)
     {
-        return service.updateText(text);
+        return service.updateText(textDTO);
+    }
+
+    @GetMapping("/findTextSortedByTag/{tag}")
+    public List<String> getTextsSortedByTag(@PathVariable("tag") String tag){
+        List<String> texts = service.findTextsSortedByTag(tag);
+        return texts;
     }
 }

@@ -35,7 +35,7 @@ public class ExternalApiService{
             language.setName(detectedLanguage);
             return language;
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt(); // Re-interrupt the current thread
+            Thread.currentThread().interrupt(); 
             Language language = new Language();
             language.setName("An error occurred");
             return language;

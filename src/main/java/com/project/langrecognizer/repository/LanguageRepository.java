@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface LanguageRepository extends JpaRepository<Language,Long> {
-    @Query(value = "SELECT * FROM language WHERE name = :name", nativeQuery = true)
-    List<Language> findByName(@Param("name") String name);
+
+    List<Language> findByName(String name);
 }

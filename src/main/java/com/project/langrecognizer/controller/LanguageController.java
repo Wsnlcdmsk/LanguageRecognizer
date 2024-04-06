@@ -1,5 +1,6 @@
 package com.project.langrecognizer.controller;
 
+import com.project.langrecognizer.dto.LanguageDTO;
 import com.project.langrecognizer.model.Language;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,13 +23,13 @@ public class LanguageController {
     }
 
    @PostMapping("/saveLanguage")
-    public Language saveLanguage(@Valid @RequestBody  Language language) {
-        return languageService.saveLanguage(language);
+    public LanguageDTO saveLanguage(@Valid @RequestBody  LanguageDTO languageDTO) {
+        return languageService.saveLanguage(languageDTO);
     }
 
     @PostMapping("/saveLanguages")
-    public List<Language> saveLanguages(@Valid @RequestBody List<Language> languages) {
-        return languageService.saveLanguages(languages);
+    public List<LanguageDTO> saveLanguages(@Valid @RequestBody List<LanguageDTO> languagesDTO) {
+        return languageService.saveLanguages(languagesDTO);
     }
 
     @GetMapping("/getLanguages")
@@ -52,7 +53,7 @@ public class LanguageController {
     }
 
     @PutMapping("/update")
-    public Language updateLanguage(@Valid @RequestBody Language language) {
-        return languageService.updateLanguage(language);
+    public LanguageDTO updateLanguage(@Valid @RequestBody LanguageDTO languageDTO) {
+        return languageService.updateLanguage(languageDTO);
     }
 }

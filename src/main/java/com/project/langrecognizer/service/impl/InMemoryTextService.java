@@ -1,5 +1,7 @@
 package com.project.langrecognizer.service.impl;
 
+import com.project.langrecognizer.dto.TextDTO;
+import com.project.langrecognizer.mapper.TextMapper;
 import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.model.Text;
@@ -18,15 +20,18 @@ import java.util.Optional;
 public class InMemoryTextService implements TextService {
 
     private TextRepository repository;
-    ExternalApiService externalApiService;
+    private ExternalApiService externalApiService;
+    private TextMapper mapper;
 
-    public Text saveText(Text text) {
-        return repository.save(text);
+    public TextDTO saveText(TextDTO textDTO) {
+        repository.save(mapper.toEntity(textDTO));
+        return textDTO;
     }
 
     @Override
-    public List<Text> saveTexts(List<Text> texts) {
-        return repository.saveAll(texts);
+    public List<TextDTO> saveTexts(List<TextDTO> textsDTO) {
+        repository.saveAll(mapper.toEntitys(textsDTO));
+        return textsDTO;
     }
 
     @Override
@@ -66,13 +71,19 @@ public class InMemoryTextService implements TextService {
     }
 
     @Override
-    public Text updateText(Text text) {
-        Text existingText = repository.findById(text.getId()).orElse(null);
+    public TextDTO updateText(TextDTO textDTO) {
+        Text existingText = repository.findById(textDTO.getId()).orElse(null);
         assert existingText != null;
-        existingText.setContent(text.getContent());
-        existingText.setLanguage(text.getLanguage());
-        existingText.setTags(text.getTags());
-        repository.deleteById(text.getId());
-        return repository.save(existingText);
+        existingText.setContent(textDTO.getContent());
+        existingText.setLanguage(textDTO.getLanguage());
+        existingText.setTags(textDTO.getTags());
+        repository.deleteById(textDTO.getId());
+        repository.save(existingText);
+        return textDTO;
+    }
+
+    @Override
+    public List<String> findTextsSortedByTag(String tag){
+        return  repository.findTextsSortedByTag(tag);
     }
 }

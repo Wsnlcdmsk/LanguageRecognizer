@@ -1,5 +1,7 @@
 package com.project.langrecognizer.service.impl;
 
+import com.project.langrecognizer.dto.TagDTO;
+import com.project.langrecognizer.mapper.TagMapper;
 import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.repository.TagRepository;
 import com.project.langrecognizer.service.TagService;
@@ -13,15 +15,18 @@ import java.util.List;
 public class InMemoryTagService implements  TagService{
 
     private TagRepository repository;
+    private TagMapper mapper;
 
     @Override
-    public Tag saveTag(Tag tag) {
-        return repository.save(tag);
+    public TagDTO saveTag(TagDTO tagDTO){
+        repository.save(mapper.toEntity(tagDTO));
+        return tagDTO;
     }
 
     @Override
-    public List<Tag> saveTags(List<Tag> tags) {
-        return repository.saveAll(tags);
+    public List<TagDTO> saveTags(List<TagDTO> tagsDTO) {
+        repository.saveAll(mapper.toEntitys(tagsDTO));
+        return tagsDTO;
     }
 
     @Override
@@ -46,13 +51,14 @@ public class InMemoryTagService implements  TagService{
     }
 
     @Override
-    public Tag updateTag(Tag tag) {
-        Tag existingTag = repository.findById(tag.getId()).orElse(null);
+    public TagDTO updateTag(TagDTO tagDTO){
+        Tag existingTag = repository.findById(tagDTO.getId()).orElse(null);
         assert existingTag != null;
-        existingTag.setName(tag.getName());
-        existingTag.setTexts(tag.getTexts());
-        repository.deleteById(tag.getId());
-        return repository.save(existingTag);
+        existingTag.setName(tagDTO.getName());
+        existingTag.setTexts(tagDTO.getTexts());
+        repository.deleteById(tagDTO.getId());
+        repository.save(existingTag);
+        return tagDTO;
     }
 
 }
