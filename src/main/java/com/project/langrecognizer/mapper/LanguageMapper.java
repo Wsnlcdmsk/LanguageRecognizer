@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class LanguageMapper {
 
-    public LanguageDTO toDTO(final @NonNull Language language) {
+    public LanguageDTO toDTO(final Language language) {
         LanguageDTO languageDTO = new LanguageDTO();
         languageDTO.setId(language.getId());
         languageDTO.setName(language.getName());
@@ -19,14 +19,14 @@ public class LanguageMapper {
         return languageDTO;
     }
 
-    public Language toEntity(final @NonNull LanguageDTO languageDTO) {
+    public Language toEntity(final LanguageDTO languageDTO) {
         Language language = new Language();
         language.setId(languageDTO.getId());
         language.setName(languageDTO.getName());
         language.setTexts(languageDTO.getTexts());
         return language;
     }
-    public List<LanguageDTO> toDTOs(final @NonNull List<Language> languages) {
+    public List<LanguageDTO> toDTOs(final List<Language> languages) {
         List<LanguageDTO> languageDTOs = new ArrayList<>();
         LanguageDTO languageDTO = new LanguageDTO();
         for(Language language:languages) {
@@ -38,7 +38,7 @@ public class LanguageMapper {
         return languageDTOs;
     }
 
-    public List<Language> toEntitys(final @NonNull List<LanguageDTO> languageDTOs) {
+    public List<Language> toEntitys(final List<LanguageDTO> languageDTOs) {
         List<Language> languages = new ArrayList<>();
         Language language = new Language();
         for(LanguageDTO languageDTO:languageDTOs) {

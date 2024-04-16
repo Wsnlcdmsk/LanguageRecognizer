@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 public class TagMapper {
-    public TagDTO toDTO(final @NonNull Tag tag) {
+    public TagDTO toDTO(final Tag tag) {
         TagDTO tagDTO = new TagDTO();
         tagDTO.setId(tag.getId());
         tagDTO.setName(tag.getName());
@@ -18,14 +18,14 @@ public class TagMapper {
         return tagDTO;
     }
 
-    public Tag toEntity(final @NonNull TagDTO tagDTO) {
+    public Tag toEntity(final TagDTO tagDTO) {
         Tag tag = new Tag();
         tag.setId(tagDTO.getId());
         tag.setName(tagDTO.getName());
         tag.setTexts(tagDTO.getTexts());
         return tag;
     }
-    public List<TagDTO> toDTOs(final @NonNull List<Tag> tags) {
+    public List<TagDTO> toDTOs(final List<Tag> tags) {
         List<TagDTO> tagDTOs = new ArrayList<>();
         TagDTO tagDTO = new TagDTO();
         for(Tag tag:tags) {
@@ -37,7 +37,7 @@ public class TagMapper {
         return tagDTOs;
     }
 
-    public List<Tag> toEntitys(final @NonNull List<TagDTO> tagDTOs) {
+    public List<Tag> toEntitys(final List<TagDTO> tagDTOs) {
         List<Tag> tags = new ArrayList<>();
         Tag tag = new Tag();
         for(TagDTO tagDTO:tagDTOs) {

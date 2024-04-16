@@ -2,6 +2,8 @@ package com.project.langrecognizer.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.langrecognizer.aspect.LoggingAnnotation;
+import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.model.Language;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,11 @@ import java.net.http.HttpResponse;
 public class ExternalApiService{
 
     private static final String API_URL = "https://api.apyhub.com/detect/language";
+    @LoggingAnnotation
     public Language detectLanguage(String text) {
+        if(text == null){
+            throw new BadRequestException("No content provided");
+        }
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()

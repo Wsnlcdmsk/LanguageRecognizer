@@ -20,4 +20,9 @@ public interface TextRepository extends JpaRepository<Text,Long> {
             nativeQuery = true)
     List<String> findTextsSortedByTag(@Param("tag") String tag);
 
+    @Query(value = "SELECT DISTINCT t.content FROM Text t "
+            + "JOIN t.language l "
+            + "WHERE l.name = :language ORDER BY t.content ASC")
+    List<String> findTextsSortedByLanguage(@Param("language") String language);
+
 }

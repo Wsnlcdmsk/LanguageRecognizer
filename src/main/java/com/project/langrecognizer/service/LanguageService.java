@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface LanguageService {
 String pageStatus();
-LanguageDTO saveLanguage(LanguageDTO languageDTO);
-List<LanguageDTO> saveLanguages(List<LanguageDTO> languagesDTO);
+LanguageDTO saveLanguage(Language language);
+List<LanguageDTO> saveLanguages(List<Language> languages);
 List<Language> getLanguages();
 Language getLanguageById(Long id);
-List<Language> getLanguageByName(String name);
+Language getLanguageByName(String name);
 String deleteLanguage(Long id);
 LanguageDTO updateLanguage(LanguageDTO languageDTO);
 }

@@ -6,12 +6,13 @@ import com.project.langrecognizer.model.Text;
 import java.util.List;
 
 public interface TextService {
-    TextDTO saveText(TextDTO textDTO);
-    List<TextDTO> saveTexts(List<TextDTO> textsDTO);
+    TextDTO saveText(Text text);
+    List<TextDTO> saveTexts(List<Text> texts);
     List<Text> getTexts();
     Text getTextById(Long id);
     Text getTextByContent(String content);
     String deleteText(Long id);
     TextDTO updateText(TextDTO textDTO);
     List<String> findTextsSortedByTag(String tag);
+    List<String> findTextsSortedByLanguage(String language);
 }

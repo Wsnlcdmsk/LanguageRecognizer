@@ -7,9 +7,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface LanguageRepository extends JpaRepository<Language,Long> {
 
-    List<Language> findByName(String name);
+    Optional<Language> findByName(String name);
 }

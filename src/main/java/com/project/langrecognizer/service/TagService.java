@@ -6,11 +6,11 @@ import com.project.langrecognizer.model.Tag;
 import java.util.List;
 
 public interface TagService {
-    TagDTO saveTag(TagDTO tagDTO);
-    List<TagDTO> saveTags(List<TagDTO> tagsDTO);
+    TagDTO saveTag(Tag tag);
+    List<TagDTO> saveTags(List<Tag> tags);
     List<Tag> getTags();
     Tag getTagById(Long id);
-    List<Tag> getTagByName(String name);
+    Tag getTagByName(String name);
     String deleteTag(Long id);
     TagDTO updateTag(TagDTO tagDTO);
 }
