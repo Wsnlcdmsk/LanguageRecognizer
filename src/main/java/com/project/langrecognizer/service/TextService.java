@@ -8,11 +8,11 @@ import java.util.List;
 public interface TextService {
     TextDTO saveText(Text text);
     List<TextDTO> saveTexts(List<Text> texts);
-    List<Text> getTexts();
-    Text getTextById(Long id);
-    Text getTextByContent(String content);
+    List<TextDTO> getTexts();
+    TextDTO getTextById(Long id);
+    TextDTO getTextByContent(String content);
     String deleteText(Long id);
-    TextDTO updateText(TextDTO textDTO);
+    TextDTO updateText(Text text);
     List<String> findTextsSortedByTag(String tag);
     List<String> findTextsSortedByLanguage(String language);
 }

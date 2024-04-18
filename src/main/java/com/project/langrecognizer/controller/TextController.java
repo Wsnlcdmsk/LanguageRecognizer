@@ -34,21 +34,21 @@ public class TextController {
 
     @Operation(summary = "Просмотр данных всех текстов")
     @GetMapping("/getTexts")
-    public List<Text> getTexts()
+    public List<TextDTO> getTexts()
     {
         return service.getTexts();
     }
 
     @Operation(summary = "Просмотр данных о тексте по id")
     @GetMapping("/getTextById/{id}")
-    public Text getTextById(@PathVariable Long id)
+    public TextDTO getTextById(@PathVariable Long id)
     {
         return service.getTextById(id);
     }
 
     @Operation(summary = "Просмотр данных о тексте по содержанию")
     @GetMapping("/getTextByContent/{content}")
-    public Text getTextByContent(@PathVariable String content)
+    public TextDTO getTextByContent(@PathVariable String content)
     {
         return service.getTextByContent(content);
     }
@@ -64,9 +64,9 @@ public class TextController {
     @Operation(summary = "Обновление данных о тексте")
     @PutMapping("/update")
     @LoggingAnnotation
-    public TextDTO updateText(@RequestBody TextDTO textDTO)
+    public TextDTO updateText(@RequestBody Text text)
     {
-        return service.updateText(textDTO);
+        return service.updateText(text);
     }
 
     @Operation(summary = "Получение отсортированных данных о тексте с определенным тэгом")
