@@ -205,4 +205,8 @@ public class InMemoryTextServiceTest {
     void testJPQLQueryRequest_NotValidObject(){
         assertThrows(BadRequestException.class, () -> textService.findTextsSortedByLanguage(null));
     }
+    @Test
+    void testTextDelete_NotValidObject(){
+        assertThrows(ResourceNotFoundException.class, () -> textService.deleteText((long) 100));
+    }
 }

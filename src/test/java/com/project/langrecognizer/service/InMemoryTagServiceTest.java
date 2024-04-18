@@ -188,4 +188,8 @@ public class InMemoryTagServiceTest {
             }
         }
     }
+    @Test
+    void testTagDelete_NotValidObject(){
+        assertThrows(ResourceNotFoundException.class, () -> tagService.deleteTag((long) 100));
+    }
 }

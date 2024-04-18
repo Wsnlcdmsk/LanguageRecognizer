@@ -187,4 +187,8 @@ public class InMemoryLanguageServiceTest {
             }
         }
     }
+    @Test
+    void testLanguageDelete_NotValidObject(){
+        assertThrows(ResourceNotFoundException.class, () -> languageService.deleteLanguage((long) 100));
+    }
 }
