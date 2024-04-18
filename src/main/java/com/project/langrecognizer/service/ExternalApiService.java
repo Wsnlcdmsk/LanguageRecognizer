@@ -42,13 +42,9 @@ public class ExternalApiService{
             return language;
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt(); 
-            Language language = new Language();
-            language.setName("An error occurred");
-            return language;
+            throw new BadRequestException("Your request was interrupt");
         } catch (Exception e) {
-            Language language = new Language();
-            language.setName("An error occurred");
-            return language;
+            throw new BadRequestException("Your request was interrupt");
         }
     }
 

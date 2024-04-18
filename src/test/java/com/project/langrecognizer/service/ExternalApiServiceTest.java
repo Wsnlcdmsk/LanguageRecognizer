@@ -1,5 +1,6 @@
 package com.project.langrecognizer.service;
 
+import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.model.Text;
 import org.junit.jupiter.api.Test;
@@ -22,16 +23,8 @@ public class ExternalApiServiceTest {
             +"He played the role of Chris, a young man who came to town looking for his family.";
 
     @Test
-    void testFindLanguageByExternalApi_Valid(){
-        Language language = new Language();
-        Text text = new Text();
-        text.setId((long) 1);
-        text.setContent(content);
-        language.setId((long) 1);
-        language.setTexts(List.of(text));
-        text.setLanguage(service.detectLanguage(content));
-        language.setName(service.detectLanguage(content).getName());
-        language.setTexts(List.of(text));
-        assertEquals("An error occurred", language.getName());
+    void testFindLanguageByExternalApi_NoValidObject(){
+        String emptyContent = new String();
+        assertThrows(BadRequestException.class, () -> service.detectLanguage(emptyContent));
     }
 }
