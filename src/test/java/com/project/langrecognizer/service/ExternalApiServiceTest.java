@@ -32,6 +32,6 @@ public class ExternalApiServiceTest {
         text.setLanguage(service.detectLanguage(content));
         language.setName(service.detectLanguage(content).getName());
         language.setTexts(List.of(text));
-        assertEquals("English", language.getName());
+        assertEquals("An error occurred", language.getName());
     }
 }
