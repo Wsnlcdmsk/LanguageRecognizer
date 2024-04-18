@@ -127,7 +127,7 @@ public class InMemoryLanguageServiceTest {
         verify(languageRepository, times(1)).saveAll(languages);
         assertEquals(languageDTOs, resultLanguageDTOs);
     }
-
+    @Test
     void testSaveLanguage_Valid(){
         when(languageRepository.save(language)).thenReturn(language);
         when(languageMapper.toDTO(language)).thenReturn(languageDTO);
@@ -180,8 +180,5 @@ public class InMemoryLanguageServiceTest {
                 break;
             }
         }
-    }
-    void testDeleteLanguage_Valid(){
-
     }
 }
