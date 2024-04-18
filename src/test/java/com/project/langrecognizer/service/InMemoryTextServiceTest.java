@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class InMemoryTextServiceTest {
+class InMemoryTextServiceTest {
     @Mock
     private TextRepository textRepository;
     @Mock

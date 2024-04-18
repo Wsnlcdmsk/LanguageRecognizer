@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-public class InMemoryTagServiceTest {
+class InMemoryTagServiceTest {
     @Mock
     private TagRepository tagRepository;
     @Mock

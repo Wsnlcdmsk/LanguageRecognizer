@@ -27,6 +27,8 @@ public class InMemoryLanguageService implements LanguageService {
     private LanguageMapper mapper;
     private static final String NO_LANGUAGE_EXIST_WITH_NAME = "No language found with name: ";
     private static final String NO_LANGUAGE_EXIST_WITH_ID = "No language found with id: ";
+    private static final String NO_NAME_PROVIDED = "No name provided";
+    private static final String NO_LANGUAGE_PROVIDED = "No language provided";
 
     /**
      * Checks if the server is working.
@@ -49,7 +51,7 @@ public class InMemoryLanguageService implements LanguageService {
     @LoggingAnnotation
     public LanguageDTO saveLanguage(Language language) throws BadRequestException {
         if (language.getName() == null) {
-            throw new BadRequestException("No name provided");
+            throw new BadRequestException(NO_NAME_PROVIDED);
         }
         languageRepository.save(language);
         if (cache == null) {
@@ -69,12 +71,12 @@ public class InMemoryLanguageService implements LanguageService {
     @Override
     @LoggingAnnotation
     public List<LanguageDTO> saveLanguages(List<Language> languages) throws BadRequestException {
-        if (languages.size() == 0) {
-            throw new BadRequestException("No languages provided");
+        if (languages.isEmpty()) {
+            throw new BadRequestException(NO_LANGUAGE_PROVIDED);
         }
         for (Language language : languages) {
             if (language.getName() == null) {
-                throw new BadRequestException("No name provided");
+                throw new BadRequestException(NO_NAME_PROVIDED);
             }
             if (cache == null) {
                 cache = new Cache<>();
@@ -158,7 +160,7 @@ public class InMemoryLanguageService implements LanguageService {
     @LoggingAnnotation
     public LanguageDTO updateLanguage(Language language) throws BadRequestException {
         if (language.getName() == null) {
-            throw new BadRequestException("No name provided");
+            throw new BadRequestException(NO_NAME_PROVIDED);
         }
         if (cache == null) {
             cache = new Cache<>();

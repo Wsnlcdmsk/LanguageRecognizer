@@ -24,6 +24,8 @@ public class InMemoryTagService implements TagService {
     private TagMapper mapper;
     private static final String NO_TAG_EXIST_WITH_NAME = "No tag found with name: ";
     private static final String NO_TAG_EXIST_WITH_ID = "No tag found with id: ";
+    private static final String NO_NAME_PROVIDED = "No name provided";
+    private static final String NO_TAGS_PROVIDED = "No tags provided";
 
     /**
      * Saves a tag entity.
@@ -36,7 +38,7 @@ public class InMemoryTagService implements TagService {
     @LoggingAnnotation
     public TagDTO saveTag(Tag tag) throws BadRequestException {
         if (tag.getName() == null) {
-            throw new BadRequestException("No name provided");
+            throw new BadRequestException(NO_NAME_PROVIDED);
         }
         repository.save(tag);
         return mapper.toDTO(tag);
@@ -52,12 +54,12 @@ public class InMemoryTagService implements TagService {
     @Override
     @LoggingAnnotation
     public List<TagDTO> saveTags(List<Tag> tags) throws BadRequestException {
-        if (tags.size() == 0) {
-            throw new BadRequestException("No tags provided");
+        if (tags.isEmpty()) {
+            throw new BadRequestException(NO_TAGS_PROVIDED);
         }
         for (Tag tag : tags) {
             if (tag.getName() == null) {
-                throw new BadRequestException("No name provided");
+                throw new BadRequestException(NO_NAME_PROVIDED);
             }
         }
         repository.saveAll(tags);
@@ -127,7 +129,7 @@ public class InMemoryTagService implements TagService {
     @LoggingAnnotation
     public TagDTO updateTag(Tag tag) throws BadRequestException {
         if (tag.getName() == null) {
-            throw new BadRequestException("No name provided");
+            throw new BadRequestException(NO_NAME_PROVIDED);
         }
         Tag existingTag;
         try {

@@ -26,6 +26,8 @@ public class InMemoryTextService implements TextService {
     private TextMapper mapper;
     private static final String NO_TEXT_EXIST_WITH_CONTENT = "No text found with content: ";
     private static final String NO_TEXT_EXIST_WITH_ID = "No text found with id: ";
+    private static final String NO_CONTENT_PROVIDED = "No content provide";
+    private static final String NO_TEXTS_PROVIDED = "No texts provided";
 
     /**
      * Saves a text entity.
@@ -38,7 +40,7 @@ public class InMemoryTextService implements TextService {
     @LoggingAnnotation
     public TextDTO saveText(Text text) throws BadRequestException {
         if (text.getContent() == null) {
-            throw new BadRequestException("No content provided");
+            throw new BadRequestException(NO_CONTENT_PROVIDED);
         }
         repository.save(text);
         return mapper.toDTO(text);
@@ -54,12 +56,12 @@ public class InMemoryTextService implements TextService {
     @Override
     @LoggingAnnotation
     public List<TextDTO> saveTexts(List<Text> texts) throws BadRequestException {
-        if (texts.size() == 0) {
-            throw new BadRequestException("No texts provided");
+        if (texts.isEmpty()) {
+            throw new BadRequestException(NO_TEXTS_PROVIDED);
         }
         for (Text text : texts) {
             if (text.getContent() == null) {
-                throw new BadRequestException("No content provided");
+                throw new BadRequestException(NO_CONTENT_PROVIDED);
             }
         }
         repository.saveAll(texts);
@@ -129,7 +131,7 @@ public class InMemoryTextService implements TextService {
     @LoggingAnnotation
     public TextDTO updateText(Text text) throws BadRequestException {
         if (text.getContent() == null) {
-            throw new BadRequestException("No content provided");
+            throw new BadRequestException(NO_CONTENT_PROVIDED);
         }
         Text existingText;
         try {
@@ -157,7 +159,7 @@ public class InMemoryTextService implements TextService {
     @Override
     public List<String> findTextsSortedByTag(String tag) throws BadRequestException {
         if (tag == null) {
-            throw new BadRequestException("No content provided");
+            throw new BadRequestException(NO_CONTENT_PROVIDED);
         }
         return repository.findTextsSortedByTag(tag);
     }
@@ -172,7 +174,7 @@ public class InMemoryTextService implements TextService {
     @Override
     public List<String> findTextsSortedByLanguage(String language) throws BadRequestException {
         if (language == null) {
-            throw new BadRequestException("No content provided");
+            throw new BadRequestException(NO_CONTENT_PROVIDED);
         }
         return repository.findTextsSortedByLanguage(language);
     }
