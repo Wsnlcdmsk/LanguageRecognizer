@@ -127,6 +127,12 @@ public class InMemoryLanguageServiceTest {
         verify(languageRepository, times(1)).saveAll(languages);
         assertEquals(languageDTOs, resultLanguageDTOs);
     }
+
+    @Test
+    void testSavesLanguages_NotValidObject() {
+        List<Language> languages = new ArrayList<>();
+        assertThrows(BadRequestException.class, () -> languageService.saveLanguages(languages));
+    }
     @Test
     void testSaveLanguage_Valid(){
         when(languageRepository.save(language)).thenReturn(language);

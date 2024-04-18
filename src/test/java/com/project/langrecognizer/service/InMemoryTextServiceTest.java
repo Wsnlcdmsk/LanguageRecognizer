@@ -149,6 +149,11 @@ public class InMemoryTextServiceTest {
         assertEquals(textDTOs, resultTextDTOs);
     }
     @Test
+    void testSavesTexts_NotValidObject() {
+        List<Text> texts = new ArrayList<>();
+        assertThrows(BadRequestException.class, () -> textService.saveTexts(texts));
+    }
+    @Test
     void testUpdateText_Valid() {
         when(textRepository.save(text)).thenReturn(text);
         when(textMapper.toDTO(text)).thenReturn(textDTO);
@@ -191,5 +196,25 @@ public class InMemoryTextServiceTest {
                 break;
             }
         }
+    }
+    @Test
+    void testSQLQueryRequest_NotValidObject(){
+        String tag = new String();
+        assertThrows(BadRequestException.class, () -> textService.findTextsSortedByTag(tag));
+    }
+    @Test
+    void testJPQLQueryRequest_NotValidObject(){
+        String language = new String();
+        assertThrows(BadRequestException.class, () -> textService.findTextsSortedByLanguage(language));
+    }
+    @Test
+    void testSQLQueryRequest_Valid(){
+        String tag = "live";
+        verify(textRepository, times(1)).findTextsSortedByTag(tag);
+    }
+    @Test
+    void testJPQLQueryRequest_Valid(){
+        String language = "Spanish";
+        verify(textRepository, times(1)).findTextsSortedByLanguage(language);
     }
 }

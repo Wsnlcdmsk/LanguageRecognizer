@@ -140,6 +140,11 @@ public class InMemoryTagServiceTest {
         assertEquals(tagDTOs, resultTagDTOs);
     }
     @Test
+    void testSavesTags_NotValidObject() {
+        List<Tag> tags = new ArrayList<>();
+        assertThrows(BadRequestException.class, () -> tagService.saveTags(tags));
+    }
+    @Test
     void testUpdateTag_Valid() {
         when(tagRepository.save(tag)).thenReturn(tag);
         when(tagMapper.toDTO(tag)).thenReturn(tagDTO);
