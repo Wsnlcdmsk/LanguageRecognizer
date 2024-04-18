@@ -1,3 +1,7 @@
+/**
+ * The ExternalApiService class provides functionality to interact with an external language detection API.
+ * It sends a request with text input to the API and retrieves the detected language.
+ */
 package com.project.langrecognizer.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -7,7 +11,6 @@ import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.model.Language;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -18,6 +21,14 @@ import java.net.http.HttpResponse;
 public class ExternalApiService{
 
     private static final String API_URL = "https://api.apyhub.com/detect/language";
+
+    /**
+     * Detects the language of the given text using an external API.
+     *
+     * @param text The text for which the language needs to be detected.
+     * @return The detected language.
+     * @throws BadRequestException If no text content is provided or if the request is interrupted.
+     */
     @LoggingAnnotation
     public Language detectLanguage(String text) {
         if(text == null){
@@ -41,13 +52,11 @@ public class ExternalApiService{
             language.setName(detectedLanguage);
             return language;
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt(); 
-            throw new BadRequestException("Your request was interrupt");
+            Thread.currentThread().interrupt();
+            throw new BadRequestException("Your request was interrupted");
         } catch (Exception e) {
-            throw new BadRequestException("Your request was interrupt");
+            throw new BadRequestException("Your request was interrupted");
         }
     }
 
 }
-
-

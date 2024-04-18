@@ -1,3 +1,6 @@
+/**
+ * The Text class represents a text entity in the system.
+ */
 package com.project.langrecognizer.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,19 +21,30 @@ public class Text {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    /**
+     * The content of the text.
+     */
     @Column
     @NotBlank
     @Size(min = 3, max = 500)
     private String content;
+
+    /**
+     * The language of the text.
+     */
     @JsonIgnoreProperties("texts")
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "language_id")
     private Language language;
+
+    /**
+     * The tags associated with this text.
+     */
     @JsonIgnoreProperties("texts")
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "texts_tags",
             joinColumns = @JoinColumn(name = "text_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
     private List<Tag> tags;
-
 }
