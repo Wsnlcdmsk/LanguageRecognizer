@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class TextMapper {
 
-    public TextDTO toDTO(final @NonNull Text text){
+    public TextDTO toDTO(final Text text){
         TextDTO textDTO = new TextDTO();
         textDTO.setId(text.getId());
         textDTO.setContent(text.getContent());
@@ -22,7 +22,7 @@ public class TextMapper {
         return textDTO;
     }
 
-    public Text toEntity(final @NonNull TextDTO textDTO){
+    public Text toEntity(final TextDTO textDTO){
         Text text = new Text();
         text.setId(textDTO.getId());
         text.setContent(textDTO.getContent());
@@ -31,28 +31,18 @@ public class TextMapper {
         return text;
     }
 
-    public List<TextDTO> toDTOs(final @NonNull List<Text> texts) {
+    public List<TextDTO> toDTOs(final List<Text> texts) {
         List<TextDTO> textDTOs = new ArrayList<>();
-        TextDTO textDTO = new TextDTO();
         for(Text text:texts) {
-            textDTO.setId(text.getId());
-            textDTO.setContent(text.getContent());
-            textDTO.setTags(text.getTags());
-            textDTO.setLanguage(text.getLanguage());
-            textDTOs.add(textDTO);
+            textDTOs.add(this.toDTO(text));
         }
         return textDTOs;
     }
 
-    public List<Text> toEntitys(final @NonNull List<TextDTO> textDTOs) {
+    public List<Text> toEntitys(final List<TextDTO> textDTOs) {
         List<Text> texts = new ArrayList<>();
-        Text text = new Text();
         for(TextDTO textDTO:textDTOs) {
-            text.setId(textDTO.getId());
-            text.setContent(textDTO.getContent());
-            text.setTags(textDTO.getTags());
-            text.setLanguage(textDTO.getLanguage());
-            texts.add(text);
+            texts.add(this.toEntity(textDTO));
         }
         return texts;
     }

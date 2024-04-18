@@ -3,10 +3,8 @@ package com.project.langrecognizer.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import lombok.NonNull;
 
 import java.util.List;
 
@@ -20,8 +18,8 @@ public class Text {
     @NotBlank
     @Size(min = 3, max = 500)
     private String content;
-    @ManyToOne
     @JsonIgnoreProperties("texts")
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "language_id")
     private Language language;
     @JsonIgnoreProperties("texts")

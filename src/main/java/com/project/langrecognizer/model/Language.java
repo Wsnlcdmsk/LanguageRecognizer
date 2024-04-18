@@ -3,7 +3,6 @@ package com.project.langrecognizer.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -23,7 +22,8 @@ public class Language {
     @NotBlank
     @Size(min = 3,max = 30)
     private String name;
-    @OneToMany(mappedBy = "language", cascade = {CascadeType.MERGE, CascadeType.PERSIST} )
-    @JsonIgnoreProperties("language")
+    @JsonIgnoreProperties("texts_language")
+    @OneToMany(mappedBy = "language",  fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Text> texts = new ArrayList<>();
 }

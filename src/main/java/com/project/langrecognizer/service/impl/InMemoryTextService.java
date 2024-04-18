@@ -5,7 +5,6 @@ import com.project.langrecognizer.dto.TextDTO;
 import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.exception.ResourceNotFoundException;
 import com.project.langrecognizer.mapper.TextMapper;
-import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.model.Text;
 import com.project.langrecognizer.repository.TextRepository;
@@ -13,7 +12,6 @@ import com.project.langrecognizer.service.ExternalApiService;
 import com.project.langrecognizer.service.TextService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +28,9 @@ public class InMemoryTextService implements TextService {
     private static final String NO_TEXT_EXIST_WITH_ID = "No text found with id: ";
 
     @Override
-    @LoggingAnnotation
-    public TextDTO saveText(Text text) throws BadRequestException{
-        if(text.getContent() == null){
+    //@LoggingAnnotation
+    public TextDTO saveText(Text text) throws BadRequestException {
+        if (text.getContent() == null) {
             throw new BadRequestException("No content provided");
         }
         repository.save(text);
@@ -40,10 +38,10 @@ public class InMemoryTextService implements TextService {
     }
 
     @Override
-    @LoggingAnnotation
-    public List<TextDTO> saveTexts(List<Text> texts) throws BadRequestException{
-        for(Text text: texts){
-            if(text.getContent() == null){
+    //@LoggingAnnotation
+    public List<TextDTO> saveTexts(List<Text> texts) throws BadRequestException {
+        for (Text text : texts) {
+            if (text.getContent() == null) {
                 throw new BadRequestException("No content provided");
             }
         }
@@ -57,15 +55,15 @@ public class InMemoryTextService implements TextService {
     }
 
     @Override
-    public Text getTextById(Long id) throws ResourceNotFoundException{
+    public Text getTextById(Long id) throws ResourceNotFoundException {
         return repository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + id));
     }
 
     @Override
-    public Text getTextByContent(String content) throws ResourceNotFoundException{
+    public Text getTextByContent(String content) throws ResourceNotFoundException {
         Optional<Text> text = repository.findByContent(content);
-        if(text.isPresent()) {
+        if (text.isPresent()) {
             return text.get();
         }
         Text externalText = new Text();
@@ -85,17 +83,22 @@ public class InMemoryTextService implements TextService {
 
     @Override
     @LoggingAnnotation
-    public String deleteText(Long id) throws ResourceNotFoundException{
-        Text text = repository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + id));
+    public String deleteText(final Long id) throws ResourceNotFoundException {
+        Text text;
+        try {
+            text = repository.findById(id).
+                    orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + id));
+        }catch (ResourceNotFoundException exeption){
+            return "There is no Text with id " + id;
+        }
         repository.deleteById(id);
         return "text removed!! " + id;
     }
 
     @Override
     @LoggingAnnotation
-    public TextDTO updateText(TextDTO textDTO) throws BadRequestException{
-        if(textDTO.getContent() == null){
+    public TextDTO updateText(final TextDTO textDTO) throws BadRequestException {
+        if (textDTO.getContent() == null) {
             throw new BadRequestException("No content provided");
         }
         Text existingText = repository.findById(textDTO.getId()).orElse(null);
@@ -109,16 +112,16 @@ public class InMemoryTextService implements TextService {
     }
 
     @Override
-    public List<String> findTextsSortedByTag(String tag) throws BadRequestException{
-        if(tag == null){
+    public List<String> findTextsSortedByTag(String tag) throws BadRequestException {
+        if (tag == null) {
             throw new BadRequestException("No content provided");
         }
-        return  repository.findTextsSortedByTag(tag);
+        return repository.findTextsSortedByTag(tag);
     }
 
     @Override
-    public List<String> findTextsSortedByLanguage(String language) throws BadRequestException{
-        if(language == null){
+    public List<String> findTextsSortedByLanguage(String language) throws BadRequestException {
+        if (language == null) {
             throw new BadRequestException("No content provided");
         }
         return repository.findTextsSortedByLanguage(language);

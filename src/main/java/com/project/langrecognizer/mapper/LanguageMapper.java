@@ -28,24 +28,16 @@ public class LanguageMapper {
     }
     public List<LanguageDTO> toDTOs(final List<Language> languages) {
         List<LanguageDTO> languageDTOs = new ArrayList<>();
-        LanguageDTO languageDTO = new LanguageDTO();
-        for(Language language:languages) {
-            languageDTO.setId(language.getId());
-            languageDTO.setName(language.getName());
-            languageDTO.setTexts(language.getTexts());
-            languageDTOs.add(languageDTO);
+        for (Language language : languages) {
+            languageDTOs.add(this.toDTO(language));
         }
         return languageDTOs;
     }
 
     public List<Language> toEntitys(final List<LanguageDTO> languageDTOs) {
         List<Language> languages = new ArrayList<>();
-        Language language = new Language();
         for(LanguageDTO languageDTO:languageDTOs) {
-            language.setId(languageDTO.getId());
-            language.setName(languageDTO.getName());
-            language.setTexts(languageDTO.getTexts());
-            languages.add(language);
+            languages.add(this.toEntity(languageDTO));
         }
         return languages;
     }

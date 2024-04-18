@@ -11,11 +11,10 @@ import com.project.langrecognizer.repository.LanguageRepository;
 import com.project.langrecognizer.repository.TextRepository;
 import com.project.langrecognizer.service.LanguageService;
 import com.project.langrecognizer.model.Text;
+import com.project.langrecognizer.service.TextService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,16 +24,16 @@ import java.util.Optional;
 public class InMemoryLanguageService implements LanguageService {
 
     private LanguageRepository languageRepository;
-    private TextRepository textRepository;
+    private TextService textService;
     private Cache<Language, Long> cache;
     private LanguageMapper mapper;
     private static final String NO_LANGUAGE_EXIST_WITH_NAME = "No language found with name: ";
     private static final String NO_LANGUAGE_EXIST_WITH_ID = "No language found with id: ";
 
     @Autowired
-    public InMemoryLanguageService(LanguageRepository languageRepository,TextRepository textRepository, LanguageMapper mapper) {
+    public InMemoryLanguageService(LanguageRepository languageRepository,TextService textService, LanguageMapper mapper) {
         this.languageRepository = languageRepository;
-        this.textRepository = textRepository;
+        this.textService = textService;
         this.mapper = mapper;
         cache = new Cache<>();
     }
@@ -51,6 +50,9 @@ public class InMemoryLanguageService implements LanguageService {
             throw new BadRequestException("No name provided");
         }
         languageRepository.save(language);
+        if(cache == null) {
+            cache = new Cache<>();
+        }
         cache.saveCached(language.getId(), language);
         return mapper.toDTO(language);
     }
@@ -63,6 +65,9 @@ public class InMemoryLanguageService implements LanguageService {
             if(language.getName() == null){
                 throw new BadRequestException("No name provided");
             }
+            if(cache == null) {
+                cache = new Cache<>();
+            }
             cache.saveCached(language.getId(), language);
         }
         languageRepository.saveAll(languages);
@@ -70,37 +75,34 @@ public class InMemoryLanguageService implements LanguageService {
     }
 
     @Override
-    public List<Language> getLanguages() {
-        return languageRepository.findAll();
+    public List<LanguageDTO> getLanguages() {
+        return mapper.toDTOs(languageRepository.findAll());
     }
 
     @Override
-    public Language getLanguageById(Long id) throws ResourceNotFoundException{
+    public LanguageDTO getLanguageById(Long id) throws ResourceNotFoundException{
         Optional<Language> cachedLanguage = cache.getCachedById(id);
         if (cachedLanguage.isPresent()) {
-            return cachedLanguage.get();
+            return mapper.toDTO(cachedLanguage.get());
         }
         Language language = languageRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException(NO_LANGUAGE_EXIST_WITH_NAME + id));
         cache.saveCached(id, language);
-        return language;
+        return mapper.toDTO(language);
     }
 
     @Override
-    public Language getLanguageByName(final String name) throws ResourceNotFoundException{
-        return languageRepository.findByName(name).
-                orElseThrow(() -> new ResourceNotFoundException(NO_LANGUAGE_EXIST_WITH_NAME + name));
+    public LanguageDTO getLanguageByName(final String name) throws ResourceNotFoundException{
+        return mapper.toDTO(languageRepository.findByName(name).
+                orElseThrow(() -> new ResourceNotFoundException(NO_LANGUAGE_EXIST_WITH_NAME + name)));
     }
 
     @Override
     @LoggingAnnotation
     public String deleteLanguage(Long id) throws ResourceNotFoundException{
+
         Language language = languageRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException(NO_LANGUAGE_EXIST_WITH_ID + id));
-        for(Text text: language.getTexts())
-        {
-            textRepository.deleteById(text.getId());
-        }
         languageRepository.deleteById(id);
         cache.deleteCachedById(id);
         return "language removed!! " + id;
@@ -108,17 +110,27 @@ public class InMemoryLanguageService implements LanguageService {
 
     @Override
     @LoggingAnnotation
-    public LanguageDTO updateLanguage(LanguageDTO languageDTO) throws BadRequestException{
-        if(languageDTO.getName() == null){
+    public LanguageDTO updateLanguage(Language language) throws BadRequestException{
+        if(language.getName() == null ){
             throw new BadRequestException("No name provided");
         }
-        Language existingLanguage = languageRepository.findById(languageDTO.getId()).orElse(null);
-        existingLanguage.setName(languageDTO.getName());
-        existingLanguage.setTexts(languageDTO.getTexts());
-        languageRepository.deleteById(languageDTO.getId());
-        cache.deleteCachedById(languageDTO.getId());
-        cache.saveCached(languageDTO.getId(), existingLanguage);
+        if(cache == null) {
+            cache = new Cache<>();
+        }
+        Language existingLanguage;
+        try {
+            existingLanguage = languageRepository.findById(language.getId())
+                    .orElseThrow(() -> new ResourceNotFoundException(NO_LANGUAGE_EXIST_WITH_ID + language.getId()));
+        }catch(ResourceNotFoundException exeption) {
+            existingLanguage = new Language();
+            existingLanguage.setId(language.getId());
+        }
+        existingLanguage.setName(language.getName());
+        existingLanguage.setTexts(language.getTexts());
+        languageRepository.deleteById(language.getId());
+        cache.deleteCachedById(language.getId());
+        cache.saveCached(language.getId(), existingLanguage);
         languageRepository.save(existingLanguage);
-        return languageDTO;
+        return mapper.toDTO(language);
     }
 }

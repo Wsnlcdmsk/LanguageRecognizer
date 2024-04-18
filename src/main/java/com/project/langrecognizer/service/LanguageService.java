@@ -9,9 +9,9 @@ public interface LanguageService {
 String pageStatus();
 LanguageDTO saveLanguage(Language language);
 List<LanguageDTO> saveLanguages(List<Language> languages);
-List<Language> getLanguages();
-Language getLanguageById(Long id);
-Language getLanguageByName(String name);
+List<LanguageDTO> getLanguages();
+LanguageDTO getLanguageById(Long id);
+LanguageDTO getLanguageByName(String name);
 String deleteLanguage(Long id);
-LanguageDTO updateLanguage(LanguageDTO languageDTO);
+LanguageDTO updateLanguage(Language language);
 }

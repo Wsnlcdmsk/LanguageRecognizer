@@ -19,7 +19,7 @@ public class TextController {
 
     @Operation(summary = "Сохранение данных о тексте")
     @PostMapping("/saveText")
-    @LoggingAnnotation
+    //@LoggingAnnotation
     public TextDTO saveText(@Valid @RequestBody Text text)
     {
         return service.saveText(text);
@@ -64,7 +64,7 @@ public class TextController {
     @Operation(summary = "Обновление данных о тексте")
     @PutMapping("/update")
     @LoggingAnnotation
-    public TextDTO updateText(@Valid @RequestBody TextDTO textDTO)
+    public TextDTO updateText(@RequestBody TextDTO textDTO)
     {
         return service.updateText(textDTO);
     }

@@ -20,7 +20,7 @@ public class TagController {
     @Operation(summary = "Сохранение данных о тэге")
     @PostMapping("/saveTag")
     @LoggingAnnotation
-    public TagDTO saveTag(@Valid @RequestBody Tag tag)
+    public TagDTO saveTag(@RequestBody Tag tag)
     {
         return service.saveTag(tag);
     }
@@ -28,28 +28,28 @@ public class TagController {
     @Operation(summary = "Сохранение данных о тэгах")
     @PostMapping("/saveTags")
     @LoggingAnnotation
-    public List<TagDTO> saveTags(@Valid @RequestBody List<Tag> tags)
+    public List<TagDTO> saveTags(@RequestBody List<Tag> tags)
     {
         return service.saveTags(tags);
     }
 
     @Operation(summary = "Просмотр данных всех тэгов")
     @GetMapping("/getTags")
-    public List<Tag> getTags()
+    public List<TagDTO> getTags()
     {
         return service.getTags();
     }
 
     @Operation(summary = "Просмотр данных о тэге по id")
     @GetMapping("/getTagById/{id}")
-    public Tag getTagById(@PathVariable Long id)
+    public TagDTO getTagById(@PathVariable Long id)
     {
         return service.getTagById(id);
     }
 
     @Operation(summary = "Просмотр данных о тэге по имени")
     @GetMapping("/getTagByContent/{name}")
-    public Tag getTagByName(@PathVariable String name)
+    public TagDTO getTagByName(@PathVariable String name)
     {
         return service.getTagByName(name);
     }
@@ -65,8 +65,8 @@ public class TagController {
     @Operation(summary = "Обновление данных о тэге")
     @PutMapping("/update")
     @LoggingAnnotation
-    public TagDTO updateTag(@Valid @RequestBody TagDTO tagDTO)
+    public TagDTO updateTag(@RequestBody Tag tag)
     {
-        return service.updateTag(tagDTO);
+        return service.updateTag(tag);
     }
 }

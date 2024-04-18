@@ -46,20 +46,20 @@ public class InMemoryTagService implements  TagService{
     }
 
     @Override
-    public List<Tag> getTags() {
-        return repository.findAll();
+    public List<TagDTO> getTags() {
+        return mapper.toDTOs(repository.findAll());
     }
 
     @Override
-    public Tag getTagById(Long id) throws ResourceNotFoundException{
-        return repository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException(NO_TAG_EXIST_WITH_ID + id));
+    public TagDTO getTagById(Long id) throws ResourceNotFoundException{
+        return mapper.toDTO(repository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException(NO_TAG_EXIST_WITH_ID + id)));
     }
 
     @Override
-    public Tag getTagByName(String name) throws ResourceNotFoundException{
-        return repository.findByName(name).
-                orElseThrow(() -> new ResourceNotFoundException(NO_TAG_EXIST_WITH_NAME + name));
+    public TagDTO getTagByName(String name) throws ResourceNotFoundException{
+        return mapper.toDTO(repository.findByName(name).
+                orElseThrow(() -> new ResourceNotFoundException(NO_TAG_EXIST_WITH_NAME + name)));
     }
 
     @Override
@@ -73,17 +73,24 @@ public class InMemoryTagService implements  TagService{
 
     @Override
     @LoggingAnnotation
-    public TagDTO updateTag(TagDTO tagDTO) throws BadRequestException{
-        if(tagDTO.getName() == null){
+    public TagDTO updateTag(Tag tag) throws BadRequestException{
+        if(tag.getName() == null){
             throw new BadRequestException("No name provided");
         }
-        Tag existingTag = repository.findById(tagDTO.getId()).orElse(null);
-        assert existingTag != null;
-        existingTag.setName(tagDTO.getName());
-        existingTag.setTexts(tagDTO.getTexts());
-        repository.deleteById(tagDTO.getId());
+        Tag existingTag;
+        try {
+            existingTag = repository.findById(tag.getId()).
+                    orElseThrow(() -> new ResourceNotFoundException(NO_TAG_EXIST_WITH_ID + tag.getId()));
+            ;
+        }catch(ResourceNotFoundException exception){
+            existingTag = new Tag();
+            existingTag.setId(tag.getId());
+        }
+        existingTag.setName(tag.getName());
+        existingTag.setTexts(tag.getTexts());
+        repository.deleteById(tag.getId());
         repository.save(existingTag);
-        return tagDTO;
+        return mapper.toDTO(tag);
     }
 
 }

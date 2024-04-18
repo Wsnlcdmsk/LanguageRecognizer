@@ -8,9 +8,9 @@ import java.util.List;
 public interface TagService {
     TagDTO saveTag(Tag tag);
     List<TagDTO> saveTags(List<Tag> tags);
-    List<Tag> getTags();
-    Tag getTagById(Long id);
-    Tag getTagByName(String name);
+    List<TagDTO> getTags();
+    TagDTO getTagById(Long id);
+    TagDTO getTagByName(String name);
     String deleteTag(Long id);
-    TagDTO updateTag(TagDTO tagDTO);
+    TagDTO updateTag(Tag tag);
 }

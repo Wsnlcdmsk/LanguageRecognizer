@@ -27,24 +27,16 @@ public class TagMapper {
     }
     public List<TagDTO> toDTOs(final List<Tag> tags) {
         List<TagDTO> tagDTOs = new ArrayList<>();
-        TagDTO tagDTO = new TagDTO();
-        for(Tag tag:tags) {
-            tagDTO.setId(tag.getId());
-            tagDTO.setName(tag.getName());
-            tagDTO.setTexts(tag.getTexts());
-            tagDTOs.add(tagDTO);
+        for (Tag tag : tags) {
+            tagDTOs.add(this.toDTO(tag));
         }
         return tagDTOs;
     }
 
     public List<Tag> toEntitys(final List<TagDTO> tagDTOs) {
         List<Tag> tags = new ArrayList<>();
-        Tag tag = new Tag();
         for(TagDTO tagDTO:tagDTOs) {
-            tag.setId(tagDTO.getId());
-            tag.setName(tagDTO.getName());
-            tag.setTexts(tagDTO.getTexts());
-            tags.add(tag);
+            tags.add(this.toEntity(tagDTO));
         }
         return tags;
     }
