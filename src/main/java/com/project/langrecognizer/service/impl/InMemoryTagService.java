@@ -36,6 +36,9 @@ public class InMemoryTagService implements  TagService{
     @Override
     @LoggingAnnotation
     public List<TagDTO> saveTags(List<Tag> tags) throws BadRequestException{
+        if(tags.size()== 0){
+            throw new BadRequestException("No tags provided");
+        }
         for(Tag tag: tags){
             if(tag.getName() == null){
                 throw new BadRequestException("No name provided");

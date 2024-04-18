@@ -28,7 +28,7 @@ public class InMemoryTextService implements TextService {
     private static final String NO_TEXT_EXIST_WITH_ID = "No text found with id: ";
 
     @Override
-    //@LoggingAnnotation
+    @LoggingAnnotation
     public TextDTO saveText(Text text) throws BadRequestException {
         if (text.getContent() == null) {
             throw new BadRequestException("No content provided");
@@ -38,8 +38,11 @@ public class InMemoryTextService implements TextService {
     }
 
     @Override
-    //@LoggingAnnotation
+    @LoggingAnnotation
     public List<TextDTO> saveTexts(List<Text> texts) throws BadRequestException {
+        if (texts.size()== 0) {
+            throw new BadRequestException("No texts provided");
+        }
         for (Text text : texts) {
             if (text.getContent() == null) {
                 throw new BadRequestException("No content provided");

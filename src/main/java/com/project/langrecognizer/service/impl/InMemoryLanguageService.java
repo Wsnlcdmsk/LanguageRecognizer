@@ -52,6 +52,9 @@ public class InMemoryLanguageService implements LanguageService {
     @Override
     @LoggingAnnotation
     public List<LanguageDTO> saveLanguages(List<Language> languages) throws BadRequestException{
+        if(languages.size()== 0){
+            throw new BadRequestException("No languages provided");
+        }
         for(Language language:languages)
         {
             if(language.getName() == null){
