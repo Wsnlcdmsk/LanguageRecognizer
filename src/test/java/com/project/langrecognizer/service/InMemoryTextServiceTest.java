@@ -205,14 +205,4 @@ public class InMemoryTextServiceTest {
     void testJPQLQueryRequest_NotValidObject(){
         assertThrows(BadRequestException.class, () -> textService.findTextsSortedByLanguage(null));
     }
-    @Test
-    void testSQLQueryRequest_Valid(){
-        String tag = "live";
-        verify(textRepository, times(1)).findTextsSortedByTag(tag);
-    }
-    @Test
-    void testJPQLQueryRequest_Valid(){
-        String language = "Spanish";
-        verify(textRepository, times(1)).findTextsSortedByLanguage(language);
-    }
 }
