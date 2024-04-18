@@ -36,6 +36,7 @@ public class InMemoryLanguageServiceTest {
 
     private static Language language;
     private static LanguageDTO languageDTO;
+    private static List<LanguageDTO> languageDTOs;
     private static LanguageMapper notMockLanguageMapper;
     private final String languageName = "name";
     private static final int NUM_OF_REPEATS = 5;
@@ -98,9 +99,36 @@ public class InMemoryLanguageServiceTest {
         assertTrue(result.isPresent());
         assertEquals(languageDTO, result.get());
     }
+    @Test
+    void testFindLanguageById_Valid() {
+        when(languageRepository.findById((long) 1)).thenReturn(Optional.of(language));
+        when(languageMapper.toDTO(language)).thenReturn(languageDTO);
 
+        Optional<LanguageDTO> result = Optional.of(languageService.getLanguageById((long) 1));
+
+        assertTrue(result.isPresent());
+        assertEquals(languageDTO, result.get());
+    }
    @Test
-    void testSaveLanguage_Valid() {
+    void testSavesLanguages_Valid() {
+        List<Language> languages = new ArrayList<>();
+        for(int i = 0; i < NUM_OF_REPEATS; i++)
+        {
+            Language tempLanguage = new Language();
+            tempLanguage.setId((long) i);
+            tempLanguage.setName(languageName + i);
+            languages.add(tempLanguage);
+        }
+       when(languageRepository.saveAll(languages)).thenReturn(languages);
+       when(languageMapper.toDTOs(languages)).thenReturn(languageDTOs);
+
+        List<LanguageDTO> resultLanguageDTOs = languageService.saveLanguages(languages);
+
+        verify(languageRepository, times(1)).saveAll(languages);
+        assertEquals(languageDTOs, resultLanguageDTOs);
+    }
+
+    void testSaveLanguage_Valid(){
         when(languageRepository.save(language)).thenReturn(language);
         when(languageMapper.toDTO(language)).thenReturn(languageDTO);
 
@@ -109,7 +137,6 @@ public class InMemoryLanguageServiceTest {
         verify(languageRepository, times(1)).save(language);
         assertEquals(languageDTO, resultLanguageDTO);
     }
-
     @Test
     void testUpdateLanguage_Valid() {
         when(languageRepository.save(language)).thenReturn(language);
@@ -153,5 +180,8 @@ public class InMemoryLanguageServiceTest {
                 break;
             }
         }
+    }
+    void testDeleteLanguage_Valid(){
+
     }
 }

@@ -1,10 +1,12 @@
 package com.project.langrecognizer.service;
 
+import com.project.langrecognizer.dto.LanguageDTO;
 import com.project.langrecognizer.dto.TagDTO;
 import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.exception.ResourceNotFoundException;
 
 import com.project.langrecognizer.mapper.TagMapper;
+import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.model.Text;
 import com.project.langrecognizer.repository.TagRepository;
@@ -36,6 +38,7 @@ public class InMemoryTagServiceTest {
 
     private static Tag tag;
     private static TagDTO tagDTO;
+    private static List<TagDTO> tagDTOs;
     private static TagMapper notMockTagMapper;
     private final String tagName = "name";
     private static final int NUM_OF_REPEATS = 5;
@@ -98,7 +101,16 @@ public class InMemoryTagServiceTest {
         assertTrue(result.isPresent());
         assertEquals(tagDTO, result.get());
     }
+    @Test
+    void testFindTagById_Valid() {
+        when(tagRepository.findById((long) 1)).thenReturn(Optional.of(tag));
+        when(tagMapper.toDTO(tag)).thenReturn(tagDTO);
 
+        Optional<TagDTO> result = Optional.of(tagService.getTagById((long) 1));
+
+        assertTrue(result.isPresent());
+        assertEquals(tagDTO, result.get());
+    }
     @Test
     void testSaveTag_Valid() {
         when(tagRepository.save(tag)).thenReturn(tag);
@@ -109,7 +121,24 @@ public class InMemoryTagServiceTest {
         verify(tagRepository, times(1)).save(tag);
         assertEquals(tagDTO, resultTagDTO);
     }
+    @Test
+    void testSavesTags_Valid() {
+        List<Tag> tags = new ArrayList<>();
+        for(int i = 0; i < NUM_OF_REPEATS; i++)
+        {
+            Tag tempTag = new Tag();
+            tempTag.setId((long) i);
+            tempTag.setName(tagName + i);
+            tags.add(tempTag);
+        }
+        when(tagRepository.saveAll(tags)).thenReturn(tags);
+        when(tagMapper.toDTOs(tags)).thenReturn(tagDTOs);
 
+        List<TagDTO> resultTagDTOs = tagService.saveTags(tags);
+
+        verify(tagRepository, times(1)).saveAll(tags);
+        assertEquals(tagDTOs, resultTagDTOs);
+    }
     @Test
     void testUpdateTag_Valid() {
         when(tagRepository.save(tag)).thenReturn(tag);

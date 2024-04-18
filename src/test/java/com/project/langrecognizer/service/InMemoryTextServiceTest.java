@@ -1,5 +1,6 @@
 package com.project.langrecognizer.service;
 
+import com.project.langrecognizer.dto.LanguageDTO;
 import com.project.langrecognizer.dto.TextDTO;
 import com.project.langrecognizer.mapper.TextMapper;
 import com.project.langrecognizer.model.Language;
@@ -38,6 +39,7 @@ public class InMemoryTextServiceTest {
 
     private static Text text;
     private static TextDTO textDTO;
+    private static List<TextDTO> textDTOs;
     private static TextMapper notMockTextMapper;
     private final String textContent = "content";
     private static final int NUM_OF_REPEATS = 5;
@@ -108,7 +110,16 @@ public class InMemoryTextServiceTest {
         assertTrue(result.isPresent());
         assertEquals(textDTO, result.get());
     }
+    @Test
+    void testFindTextById_Valid() {
+        when(textRepository.findById((long) 1)).thenReturn(Optional.of(text));
+        when(textMapper.toDTO(text)).thenReturn(textDTO);
 
+        Optional<TextDTO> result = Optional.of(textService.getTextById((long) 1));
+
+        assertTrue(result.isPresent());
+        assertEquals(textDTO, result.get());
+    }
     @Test
     void testSaveText_Valid() {
         when(textRepository.save(text)).thenReturn(text);
@@ -119,7 +130,24 @@ public class InMemoryTextServiceTest {
         verify(textRepository, times(1)).save(text);
         assertEquals(textDTO, resultTextDTO);
     }
+    @Test
+    void testSavesTexts_Valid() {
+        List<Text> texts = new ArrayList<>();
+        for(int i = 0; i < NUM_OF_REPEATS; i++)
+        {
+            Text tempText = new Text();
+            tempText.setId((long) i);
+            tempText.setContent(textContent + i);
+            texts.add(tempText);
+        }
+        when(textRepository.saveAll(texts)).thenReturn(texts);
+        when(textMapper.toDTOs(texts)).thenReturn(textDTOs);
 
+        List<TextDTO> resultTextDTOs = textService.saveTexts(texts);
+
+        verify(textRepository, times(1)).saveAll(texts);
+        assertEquals(textDTOs, resultTextDTOs);
+    }
     @Test
     void testUpdateText_Valid() {
         when(textRepository.save(text)).thenReturn(text);

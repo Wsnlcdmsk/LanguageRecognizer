@@ -29,14 +29,6 @@ public class InMemoryLanguageService implements LanguageService {
     private LanguageMapper mapper;
     private static final String NO_LANGUAGE_EXIST_WITH_NAME = "No language found with name: ";
     private static final String NO_LANGUAGE_EXIST_WITH_ID = "No language found with id: ";
-
-    @Autowired
-    public InMemoryLanguageService(LanguageRepository languageRepository,TextService textService, LanguageMapper mapper) {
-        this.languageRepository = languageRepository;
-        this.textService = textService;
-        this.mapper = mapper;
-        cache = new Cache<>();
-    }
     @Override
     public String pageStatus()
     {
@@ -81,6 +73,9 @@ public class InMemoryLanguageService implements LanguageService {
 
     @Override
     public LanguageDTO getLanguageById(Long id) throws ResourceNotFoundException{
+        if(cache == null) {
+            cache = new Cache<>();
+        }
         Optional<Language> cachedLanguage = cache.getCachedById(id);
         if (cachedLanguage.isPresent()) {
             return mapper.toDTO(cachedLanguage.get());
