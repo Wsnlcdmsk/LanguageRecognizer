@@ -199,13 +199,11 @@ public class InMemoryTextServiceTest {
     }
     @Test
     void testSQLQueryRequest_NotValidObject(){
-        String tag = new String();
-        assertThrows(BadRequestException.class, () -> textService.findTextsSortedByTag(tag));
+        assertThrows(BadRequestException.class, () -> textService.findTextsSortedByTag(null));
     }
     @Test
     void testJPQLQueryRequest_NotValidObject(){
-        String language = new String();
-        assertThrows(BadRequestException.class, () -> textService.findTextsSortedByLanguage(language));
+        assertThrows(BadRequestException.class, () -> textService.findTextsSortedByLanguage(null));
     }
     @Test
     void testSQLQueryRequest_Valid(){
