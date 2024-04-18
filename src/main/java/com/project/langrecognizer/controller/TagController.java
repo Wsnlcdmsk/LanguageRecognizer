@@ -5,7 +5,6 @@ import com.project.langrecognizer.dto.TagDTO;
 import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.service.TagService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

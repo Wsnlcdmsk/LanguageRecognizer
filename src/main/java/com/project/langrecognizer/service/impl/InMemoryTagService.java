@@ -5,7 +5,6 @@ import com.project.langrecognizer.dto.TagDTO;
 import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.exception.ResourceNotFoundException;
 import com.project.langrecognizer.mapper.TagMapper;
-import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.repository.TagRepository;
 import com.project.langrecognizer.service.TagService;

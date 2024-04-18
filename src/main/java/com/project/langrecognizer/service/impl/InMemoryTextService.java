@@ -5,7 +5,6 @@ import com.project.langrecognizer.dto.TextDTO;
 import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.exception.ResourceNotFoundException;
 import com.project.langrecognizer.mapper.TextMapper;
-import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.model.Text;
 import com.project.langrecognizer.repository.TextRepository;
 import com.project.langrecognizer.service.ExternalApiService;
@@ -13,9 +12,7 @@ import com.project.langrecognizer.service.TextService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -66,7 +63,7 @@ public class InMemoryTextService implements TextService {
     @Override
     public TextDTO getTextByContent(String content) throws ResourceNotFoundException {
         return mapper.toDTO(repository.findByContent(content).
-                orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_CONTENT + content)));
+                orElseThrow(() -> new BadRequestException(NO_TEXT_EXIST_WITH_CONTENT + content)));
     }
 
     @Override

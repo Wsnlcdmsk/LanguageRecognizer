@@ -1,6 +1,5 @@
 package com.project.langrecognizer.service;
 
-import com.project.langrecognizer.dto.LanguageDTO;
 import com.project.langrecognizer.dto.TextDTO;
 import com.project.langrecognizer.mapper.TextMapper;
 import com.project.langrecognizer.model.Language;

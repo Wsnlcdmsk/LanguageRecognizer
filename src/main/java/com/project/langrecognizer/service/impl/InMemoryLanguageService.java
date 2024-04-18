@@ -8,12 +8,8 @@ import com.project.langrecognizer.exception.ResourceNotFoundException;
 import com.project.langrecognizer.mapper.LanguageMapper;
 import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.repository.LanguageRepository;
-import com.project.langrecognizer.repository.TextRepository;
 import com.project.langrecognizer.service.LanguageService;
-import com.project.langrecognizer.model.Text;
-import com.project.langrecognizer.service.TextService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +20,6 @@ import java.util.Optional;
 public class InMemoryLanguageService implements LanguageService {
 
     private LanguageRepository languageRepository;
-    private TextService textService;
     private Cache<Language, Long> cache;
     private LanguageMapper mapper;
     private static final String NO_LANGUAGE_EXIST_WITH_NAME = "No language found with name: ";

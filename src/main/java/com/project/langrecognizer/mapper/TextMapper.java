@@ -1,10 +1,7 @@
 package com.project.langrecognizer.mapper;
 
-import com.project.langrecognizer.dto.TagDTO;
 import com.project.langrecognizer.dto.TextDTO;
-import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.model.Text;
-import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
