@@ -50,65 +50,52 @@ public class InMemoryTextService implements TextService {
     }
 
     @Override
-    public List<Text> getTexts() {
-        return repository.findAll();
+    public List<TextDTO> getTexts() {
+        return mapper.toDTOs(repository.findAll());
     }
 
     @Override
-    public Text getTextById(Long id) throws ResourceNotFoundException {
-        return repository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + id));
+    public TextDTO getTextById(Long id) throws ResourceNotFoundException {
+        return mapper.toDTO(repository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + id)));
     }
 
     @Override
-    public Text getTextByContent(String content) throws ResourceNotFoundException {
-        Optional<Text> text = repository.findByContent(content);
-        if (text.isPresent()) {
-            return text.get();
-        }
-        Text externalText = new Text();
-        List<Tag> tags = new ArrayList<>();
-        List<Text> texts = new ArrayList<>();
-        Tag tag = new Tag();
-        externalText.setContent(content);
-        externalText.setLanguage(externalApiService.detectLanguage(content));
-        tag.setName("Unknown");
-        texts.add(externalText);
-        tag.setTexts(texts);
-        tags.add(tag);
-        externalText.setTags(tags);
-        return Optional.of(externalText).
-                orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_CONTENT + content));
+    public TextDTO getTextByContent(String content) throws ResourceNotFoundException {
+        return mapper.toDTO(repository.findByContent(content).
+                orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_CONTENT + content)));
     }
 
     @Override
     @LoggingAnnotation
     public String deleteText(final Long id) throws ResourceNotFoundException {
         Text text;
-        try {
-            text = repository.findById(id).
-                    orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + id));
-        }catch (ResourceNotFoundException exeption){
-            return "There is no Text with id " + id;
-        }
+        text = repository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + id));
         repository.deleteById(id);
         return "text removed!! " + id;
     }
 
     @Override
     @LoggingAnnotation
-    public TextDTO updateText(final TextDTO textDTO) throws BadRequestException {
-        if (textDTO.getContent() == null) {
+    public TextDTO updateText(final Text text) throws BadRequestException {
+        if (text.getContent() == null) {
             throw new BadRequestException("No content provided");
         }
-        Text existingText = repository.findById(textDTO.getId()).orElse(null);
-        assert existingText != null;
-        existingText.setContent(textDTO.getContent());
-        existingText.setLanguage(textDTO.getLanguage());
-        existingText.setTags(textDTO.getTags());
-        repository.deleteById(textDTO.getId());
+        Text existingText;
+        try {
+            existingText = repository.findById(text.getId()).
+                    orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + text.getId()));
+        } catch (ResourceNotFoundException exeption) {
+            existingText = new Text();
+            existingText.setId(text.getId());
+        }
+        existingText.setContent(text.getContent());
+        existingText.setLanguage(text.getLanguage());
+        existingText.setTags(text.getTags());
+        repository.deleteById(text.getId());
         repository.save(existingText);
-        return textDTO;
+        return mapper.toDTO(text);
     }
 
     @Override
