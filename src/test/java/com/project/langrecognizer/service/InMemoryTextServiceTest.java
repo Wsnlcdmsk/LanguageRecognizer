@@ -181,16 +181,16 @@ public class InMemoryTextServiceTest {
         when(textRepository.findByContent(textContent)).thenReturn(Optional.empty());
         switch (methodName) {
             case "getTextByContent": {
-                assertThrows(ResourceNotFoundException.class, () -> textService.getTextByContent(textContent));
+                assertThrows(BadRequestException.class, () -> textService.getTextByContent(textContent));
                 break;
             }
             case "deleteText": {
-                assertThrows(ResourceNotFoundException.class, () -> textService.deleteText(textService.
+                assertThrows(BadRequestException.class, () -> textService.deleteText(textService.
                         getTextByContent(textContent).getId()));
                 break;
             }
             case "getTextById": {
-                assertThrows(ResourceNotFoundException.class, () -> textService.getTextById(textService.
+                assertThrows(BadRequestException.class, () -> textService.getTextById(textService.
                         getTextByContent(textContent).getId()));
                 break;
             }
