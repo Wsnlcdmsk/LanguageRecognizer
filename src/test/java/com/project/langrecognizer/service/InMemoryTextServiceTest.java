@@ -212,4 +212,5 @@ class InMemoryTextServiceTest {
     void testAddListOfTextToLanguage1_NotValidObject(){
         assertThrows(NullPointerException.class, () -> textService.addListOfTextToLanguage(null, (long)1));
     }
+    //
 }
