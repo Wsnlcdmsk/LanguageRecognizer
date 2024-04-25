@@ -9,13 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class LangRecognizerApplication {
-
 	/**
 	 * Метод main для запуска приложения.
-	 *
 	 * @param args Аргументы командной строки (не используются).
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SpringApplication.run(LangRecognizerApplication.class, args);
 	}
 

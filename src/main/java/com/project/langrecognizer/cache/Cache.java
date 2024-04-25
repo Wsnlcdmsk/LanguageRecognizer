@@ -1,12 +1,16 @@
+/**
+ * The {@code cache} package contains the {@link Cache}
+ * which is a simple cache implementation using
+ * a {@link LinkedHashMap}.
+ * It can be used to store and retrieve cached objects
+ * by their identifiers.
+ */
 package com.project.langrecognizer.cache;
-
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
-
 /**
  * Simple cache implementation using a LinkedHashMap.
  * @param <T> Type of cached objects.
@@ -21,7 +25,7 @@ public class Cache<T, I> {
     /** Internal map to store cached objects. */
     private final Map<I, T> map = new LinkedHashMap<>() {
         @Override
-        protected boolean removeEldestEntry(Map.Entry<I, T> eldest) {
+        protected boolean removeEldestEntry(final Map.Entry<I, T> eldest) {
             return size() > CACHE_SIZE;
         }
     };
@@ -31,7 +35,7 @@ public class Cache<T, I> {
      * @param id The identifier of the cached object.
      * @return An Optional containing the cached object, or empty if not found.
      */
-    public Optional<T> getCachedById(I id) {
+    public Optional<T> getCachedById(final I id) {
         return Optional.ofNullable(map.get(id));
     }
 
@@ -39,7 +43,7 @@ public class Cache<T, I> {
      * Deletes a cached object by its identifier.
      * @param id The identifier of the cached object to delete.
      */
-    public void deleteCachedById(I id) {
+    public void deleteCachedById(final I id) {
         map.remove(id);
     }
 
@@ -50,7 +54,7 @@ public class Cache<T, I> {
      * @param <S> The type of the cached object.
      * @return The saved or updated cached object.
      */
-    public <S extends T> S saveCached(I id, S entity) {
+    public <S extends T> S saveCached(final I id, final S entity) {
         return (S) map.put(id, entity);
     }
 }

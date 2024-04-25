@@ -1,5 +1,6 @@
 /**
- * The LanguageMapper class provides methods to map between Language entities and LanguageDTO data transfer objects.
+ * The LanguageMapper class provides methods to map
+ * between Language entities and LanguageDTO data transfer objects.
  */
 package com.project.langrecognizer.mapper;
 
@@ -42,7 +43,8 @@ public class LanguageMapper {
     }
 
     /**
-     * Maps a list of Language entities to a list of LanguageDTO data transfer objects.
+     * Maps a list of Language entities to a list of
+     * LanguageDTO data transfer objects.
      *
      * @param languages The list of Language entities to be mapped.
      * @return The list of mapped LanguageDTO objects.
@@ -56,14 +58,15 @@ public class LanguageMapper {
     }
 
     /**
-     * Maps a list of LanguageDTO data transfer objects to a list of Language entities.
+     * Maps a list of LanguageDTO data transfer objects
+     * to a list of Language entities.
      *
      * @param languageDTOs The list of LanguageDTO objects to be mapped.
      * @return The list of mapped Language entities.
      */
     public List<Language> toEntitys(final List<LanguageDTO> languageDTOs) {
         List<Language> languages = new ArrayList<>();
-        for(LanguageDTO languageDTO : languageDTOs) {
+        for (LanguageDTO languageDTO : languageDTOs) {
             languages.add(this.toEntity(languageDTO));
         }
         return languages;

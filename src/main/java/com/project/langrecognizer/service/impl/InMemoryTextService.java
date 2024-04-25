@@ -1,6 +1,8 @@
 /**
- * The InMemoryTextService class provides implementation for the TextService interface using in-memory storage.
- * It manages CRUD operations for Text entities, text retrieval based on tags, and sorting by language.
+ * The InMemoryTextService class provides implementation
+ * for the TextService interface using in-memory storage.
+ * It manages CRUD operations for Text entities,
+ * text retrieval based on tags, and sorting by language.
  */
 package com.project.langrecognizer.service.impl;
 
@@ -9,7 +11,9 @@ import com.project.langrecognizer.dto.TextDTO;
 import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.exception.ResourceNotFoundException;
 import com.project.langrecognizer.mapper.TextMapper;
+import com.project.langrecognizer.model.Language;
 import com.project.langrecognizer.model.Text;
+import com.project.langrecognizer.repository.LanguageRepository;
 import com.project.langrecognizer.repository.TextRepository;
 import com.project.langrecognizer.service.ExternalApiService;
 import com.project.langrecognizer.service.TextService;
@@ -21,13 +25,45 @@ import java.util.List;
 @AllArgsConstructor
 public class InMemoryTextService implements TextService {
 
-    private TextRepository repository;
+    /** The repository for accessing the database
+     * and performing CRUD operations on the Text entity. */
+    private TextRepository textRepository;
+
+    /** The repository for accessing the database
+     * and performing CRUD operations on the Language entity. */
+    private LanguageRepository languageRepository;
+
+    /** The external API service
+     * for detectingthe language of a given text. */
     private ExternalApiService externalApiService;
+
+    /** The mapper for converting between
+     * Text entities and DTOs. */
     private TextMapper mapper;
-    private static final String NO_TEXT_EXIST_WITH_CONTENT = "No text found with content: ";
-    private static final String NO_TEXT_EXIST_WITH_ID = "No text found with id: ";
-    private static final String NO_CONTENT_PROVIDED = "No content provide";
-    private static final String NO_TEXTS_PROVIDED = "No texts provided";
+
+    /** The error message to be thrown when no text
+     * is found with the given content. */
+    private static final String NO_TEXT_EXIST_WITH_CONTENT =
+            "No text found with content: ";
+
+    /** The error message to be thrown when no text
+     * is found with the given id. */
+    private static final String NO_TEXT_EXIST_WITH_ID =
+            "No text found with id: ";
+
+    /** The error message to be thrown when no content
+     * is provided for a new text. */
+    private static final String NO_CONTENT_PROVIDED =
+            "No content provide";
+
+    /** The error message to be thrown when no texts
+     * are provided for an update. */
+    private static final String NO_TEXTS_PROVIDED =
+            "No texts provided";
+    /** The error message to be thrown when no language
+     * exist with this id. */
+    private static final String NO_LANGUAGE_EXIST_WITH_ID =
+            "No language exist wuth id";
 
     /**
      * Saves a text entity.
@@ -38,11 +74,11 @@ public class InMemoryTextService implements TextService {
      */
     @Override
     @LoggingAnnotation
-    public TextDTO saveText(Text text) throws BadRequestException {
+    public TextDTO saveText(final Text text) throws BadRequestException {
         if (text.getContent() == null) {
             throw new BadRequestException(NO_CONTENT_PROVIDED);
         }
-        repository.save(text);
+        textRepository.save(text);
         return mapper.toDTO(text);
     }
 
@@ -51,11 +87,13 @@ public class InMemoryTextService implements TextService {
      *
      * @param texts The list of text entities to be saved.
      * @return The list of saved text DTOs.
-     * @throws BadRequestException If no texts are provided or if no content is provided for any text.
+     * @throws BadRequestException If no texts are provided
+     * or if no content is provided for any text.
      */
     @Override
     @LoggingAnnotation
-    public List<TextDTO> saveTexts(List<Text> texts) throws BadRequestException {
+    public List<TextDTO> saveTexts(final List<Text> texts)
+            throws BadRequestException {
         if (texts.isEmpty()) {
             throw new BadRequestException(NO_TEXTS_PROVIDED);
         }
@@ -64,7 +102,7 @@ public class InMemoryTextService implements TextService {
                 throw new BadRequestException(NO_CONTENT_PROVIDED);
             }
         }
-        repository.saveAll(texts);
+        textRepository.saveAll(texts);
         return mapper.toDTOs(texts);
     }
 
@@ -75,7 +113,7 @@ public class InMemoryTextService implements TextService {
      */
     @Override
     public List<TextDTO> getTexts() {
-        return mapper.toDTOs(repository.findAll());
+        return mapper.toDTOs(textRepository.findAll());
     }
 
     /**
@@ -86,9 +124,10 @@ public class InMemoryTextService implements TextService {
      * @throws ResourceNotFoundException If no text is found with the given ID.
      */
     @Override
-    public TextDTO getTextById(Long id) throws ResourceNotFoundException {
-        return mapper.toDTO(repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + id)));
+    public TextDTO getTextById(final Long id) throws ResourceNotFoundException {
+        return mapper.toDTO(textRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        NO_TEXT_EXIST_WITH_ID + id)));
     }
 
     /**
@@ -96,12 +135,15 @@ public class InMemoryTextService implements TextService {
      *
      * @param content The content of the text to retrieve.
      * @return The text DTO.
-     * @throws ResourceNotFoundException If no text is found with the given content.
+     * @throws ResourceNotFoundException If no text
+     * is found with the given content.
      */
     @Override
-    public TextDTO getTextByContent(String content) throws ResourceNotFoundException {
-        return mapper.toDTO(repository.findByContent(content)
-                .orElseThrow(() -> new BadRequestException(NO_TEXT_EXIST_WITH_CONTENT + content)));
+    public TextDTO getTextByContent(final String content)
+            throws ResourceNotFoundException {
+        return mapper.toDTO(textRepository.findByContent(content)
+                .orElseThrow(() -> new BadRequestException(
+                        NO_TEXT_EXIST_WITH_CONTENT + content)));
     }
 
     /**
@@ -113,10 +155,11 @@ public class InMemoryTextService implements TextService {
     */
     @Override
     @LoggingAnnotation
-    public String deleteText(Long id) throws ResourceNotFoundException {
-        Text text = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + id));
-        repository.deleteById(id);
+    public String deleteText(final Long id) throws ResourceNotFoundException {
+        Text text = textRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        NO_TEXT_EXIST_WITH_ID + id));
+        textRepository.deleteById(id);
         return "Text removed: " + id;
     }
 
@@ -129,14 +172,15 @@ public class InMemoryTextService implements TextService {
      */
     @Override
     @LoggingAnnotation
-    public TextDTO updateText(Text text) throws BadRequestException {
+    public TextDTO updateText(final Text text) throws BadRequestException {
         if (text.getContent() == null) {
             throw new BadRequestException(NO_CONTENT_PROVIDED);
         }
         Text existingText;
         try {
-            existingText = repository.findById(text.getId())
-                    .orElseThrow(() -> new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + text.getId()));
+            existingText = textRepository.findById(text.getId())
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            NO_TEXT_EXIST_WITH_ID + text.getId()));
         } catch (ResourceNotFoundException exception) {
             existingText = new Text();
             existingText.setId(text.getId());
@@ -144,8 +188,8 @@ public class InMemoryTextService implements TextService {
         existingText.setContent(text.getContent());
         existingText.setLanguage(text.getLanguage());
         existingText.setTags(text.getTags());
-        repository.deleteById(text.getId());
-        repository.save(existingText);
+        textRepository.deleteById(text.getId());
+        textRepository.save(existingText);
         return mapper.toDTO(text);
     }
 
@@ -157,11 +201,12 @@ public class InMemoryTextService implements TextService {
      * @throws BadRequestException If no content is provided for the tag.
      */
     @Override
-    public List<String> findTextsSortedByTag(String tag) throws BadRequestException {
+    public List<String> findTextsSortedByTag(final String tag)
+            throws BadRequestException {
         if (tag == null) {
             throw new BadRequestException(NO_CONTENT_PROVIDED);
         }
-        return repository.findTextsSortedByTag(tag);
+        return textRepository.findTextsSortedByTag(tag);
     }
 
     /**
@@ -172,10 +217,36 @@ public class InMemoryTextService implements TextService {
      * @throws BadRequestException If no content is provided for the language.
      */
     @Override
-    public List<String> findTextsSortedByLanguage(String language) throws BadRequestException {
+    public List<String> findTextsSortedByLanguage(
+            final String language) throws BadRequestException {
         if (language == null) {
             throw new BadRequestException(NO_CONTENT_PROVIDED);
         }
-        return repository.findTextsSortedByLanguage(language);
+        return textRepository.findTextsSortedByLanguage(language);
+    }
+
+    /**
+     * Добавляет список текстов к языку.
+     *
+     * @param texts Список текстов для добавления.
+     * @param id Идентификатор языка.
+     * @return Сообщение об ошибке или null, если операция выполнена успешно.
+     * @throws BadRequestException Если язык с указанным идентификатором не существует.
+     */
+    public String addListOfTextToLanguage(List<Text> texts, Long id)
+            throws BadRequestException{
+        Language language = languageRepository.findById(id).get();
+        if(language == null) {
+            throw new BadRequestException(NO_LANGUAGE_EXIST_WITH_ID + id);
+        }
+        texts.stream().filter(text -> language.getTexts().stream()
+                        .noneMatch(pnc -> pnc.getContent().equals(text.getContent())))
+                .forEach(text -> {
+                    language.getTexts().add(text);
+                    text.setLanguage(language);
+                    textRepository.save(text);
+                });
+        languageRepository.save(language);
+        return "The operation was successful";
     }
 }

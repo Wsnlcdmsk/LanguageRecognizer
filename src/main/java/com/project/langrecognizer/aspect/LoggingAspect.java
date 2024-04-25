@@ -3,7 +3,12 @@ package com.project.langrecognizer.aspect;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -27,7 +32,8 @@ public final class LoggingAspect {
     /**
      * Pointcut to match methods annotated with LoggingAnnotation.
      */
-    @Pointcut("@annotation(com.project.langrecognizer.aspect.LoggingAnnotation)")
+    @Pointcut("@annotation("
+            + "com.project.langrecognizer.aspect.LoggingAnnotation)")
     public void methodsWithAspectAnnotation() {
     }
 
@@ -45,8 +51,10 @@ public final class LoggingAspect {
      * @param joinPoint The join point representing the method call.
      * @param result The result returned by the method.
      */
-    @AfterReturning(pointcut = "methodsWithAspectAnnotation()", returning = "result")
-    public void logMethodReturn(final JoinPoint joinPoint, final Object result) {
+    @AfterReturning(pointcut = "methodsWithAspectAnnotation()",
+            returning = "result")
+    public void logMethodReturn(final JoinPoint joinPoint,
+                                final Object result) {
         logInfo(joinPoint, "Method return", "returned: " + result);
     }
 
@@ -56,7 +64,8 @@ public final class LoggingAspect {
      * @param exception The exception thrown by the method.
      */
     @AfterThrowing(pointcut = "allMethods()", throwing = "exception")
-    public void logException(final JoinPoint joinPoint, final Throwable exception) {
+    public void logException(final JoinPoint joinPoint,
+                             final Throwable exception) {
         logInfo(joinPoint, "Exception in", "cause: " + exception.getMessage());
     }
 
@@ -67,7 +76,8 @@ public final class LoggingAspect {
      * @throws Throwable Thrown if an error occurs during method execution.
      */
     @Around("methodsWithAspectAnnotation()")
-    public Object logExecutionTime(final ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object logExecutionTime(final ProceedingJoinPoint joinPoint)
+            throws Throwable {
         long start = System.currentTimeMillis();
         Object proceed = joinPoint.proceed();
         long executionTime = System.currentTimeMillis() - start;
@@ -81,11 +91,13 @@ public final class LoggingAspect {
      * @param message The log message.
      * @param additionalInfo Additional information to log.
      */
-    private void logInfo(final JoinPoint joinPoint, final String message, final String additionalInfo) {
+    private void logInfo(final JoinPoint joinPoint,
+                         final String message, final String additionalInfo) {
         Object[] args = joinPoint.getArgs();
         String fullClassName = joinPoint.getSignature().getDeclaringTypeName();
         String methodName = joinPoint.getSignature().getName();
-        log.info("{}: {}.{} with args: {} {}", message, fullClassName, methodName, Arrays.toString(args),
+        log.info("{}: {}.{} with args: {} {}",
+                message, fullClassName, methodName, Arrays.toString(args),
                 additionalInfo);
     }
 

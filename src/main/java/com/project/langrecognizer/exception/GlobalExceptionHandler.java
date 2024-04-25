@@ -1,8 +1,10 @@
 /**
- * Глобальный обработчик исключений для обработки и представления исключений в REST-контроллерах.
+ * Глобальный обработчик исключений для обработки и
+ * представления исключений в REST-контроллерах.
  */
 package com.project.langrecognizer.exception;
 
+import com.project.langrecognizer.aspect.LoggingAnnotation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -17,7 +19,10 @@ import java.util.List;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    /** The error message to be thrown
+     * when the requested resources are not found. */
     private static final String NOT_FOUND = "Ресурсы не найдены: ";
+
 
     /**
      * Обрабатывает исключение ResourceNotFoundException.
@@ -26,9 +31,11 @@ public class GlobalExceptionHandler {
      * @param request   Запрос.
      * @return ResponseEntity с деталями ошибки и статусом NOT_FOUND.
      */
+    @LoggingAnnotation
     @ExceptionHandler({ResourceNotFoundException.class})
-    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(final ResourceNotFoundException exception,
-                                                                        final WebRequest request) {
+    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(
+            final ResourceNotFoundException exception,
+            final WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
                 HttpStatus.NOT_FOUND.value(),
                 NOT_FOUND + exception.getMessage(),
@@ -43,9 +50,10 @@ public class GlobalExceptionHandler {
      * @param request   Запрос.
      * @return ResponseEntity с деталями ошибки и статусом BAD_REQUEST.
      */
+    @LoggingAnnotation
     @ExceptionHandler({BadRequestException.class})
-    public ResponseEntity<ErrorDetails> handleBadRequestException(final BadRequestException exception,
-                                                                  final WebRequest request) {
+    public ResponseEntity<ErrorDetails> handleBadRequestException(
+            final BadRequestException exception, final WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
                 HttpStatus.BAD_REQUEST.value(),
                 NOT_FOUND + exception.getMessage(),
@@ -60,12 +68,17 @@ public class GlobalExceptionHandler {
      * @param request   Запрос.
      * @return ResponseEntity с деталями ошибки и статусом BAD_REQUEST.
      */
+    @LoggingAnnotation
     @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<ErrorDetails> handleMethodArgumentNotValidException(
-            final MethodArgumentNotValidException exception, final WebRequest request) {
+            final MethodArgumentNotValidException exception,
+            final WebRequest request) {
         List<String> errors = new ArrayList<>();
-        exception.getBindingResult().getFieldErrors().forEach(fieldError -> {
-            String errorMessage = String.format("%s - %s", fieldError.getField(), fieldError.getDefaultMessage());
+        exception.getBindingResult().getFieldErrors().
+                forEach(fieldError -> {
+            String errorMessage = String.
+                    format("%s - %s", fieldError.getField(),
+                            fieldError.getDefaultMessage());
             errors.add(errorMessage);
         });
         String errorMessage = String.join(", ", errors);
@@ -79,17 +92,20 @@ public class GlobalExceptionHandler {
 
     /**
      * Обрабатывает исключение Exception.
-     *
      * @param exception Исключение Exception.
      * @param request   Запрос.
-     * @return ResponseEntity с деталями ошибки и статусом INTERNAL_SERVER_ERROR.
+     * @return ResponseEntity с деталями ошибки и статусом
+     * INTERNAL_SERVER_ERROR.
      */
+    @LoggingAnnotation
     @ExceptionHandler({Exception.class})
-    public ResponseEntity<ErrorDetails> handleGlobalException(final Exception exception, final WebRequest request) {
+    public ResponseEntity<ErrorDetails> handleGlobalException(
+            final Exception exception, final WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 NOT_FOUND + exception.getMessage(),
                 request.getDescription(false));
-        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(
+                errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

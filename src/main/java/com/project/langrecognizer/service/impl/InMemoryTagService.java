@@ -1,5 +1,6 @@
 /**
- * The InMemoryTagService class provides implementation for TagService interface using in-memory storage.
+ * The InMemoryTagService class provides implementation
+ * for TagService interface using in-memory storage.
  */
 package com.project.langrecognizer.service.impl;
 
@@ -20,12 +21,34 @@ import java.util.List;
 @AllArgsConstructor
 public class InMemoryTagService implements TagService {
 
+    /** The repository for accessing the database
+     * and performing CRUD operations on the Tag entity. */
     private TagRepository repository;
+
+    /** The mapper for converting between
+     * Tag entities and DTOs. */
     private TagMapper mapper;
-    private static final String NO_TAG_EXIST_WITH_NAME = "No tag found with name: ";
-    private static final String NO_TAG_EXIST_WITH_ID = "No tag found with id: ";
-    private static final String NO_NAME_PROVIDED = "No name provided";
-    private static final String NO_TAGS_PROVIDED = "No tags provided";
+
+    /** The error message to be thrown when no tag
+     * is found with the given name. */
+    private static final String NO_TAG_EXIST_WITH_NAME =
+            "No tag found with name: ";
+
+    /** The error message to be thrown when no tag
+     * is found with the given id. */
+    private static final String NO_TAG_EXIST_WITH_ID =
+            "No tag found with id: ";
+
+    /** The error message to be thrown when no name
+     * is provided for a new tag. */
+    private static final String NO_NAME_PROVIDED =
+            "No name provided";
+
+    /** The error message to be thrown when no tags
+     * are provided for an update. */
+    private static final String NO_TAGS_PROVIDED =
+            "No tags provided";
+
 
     /**
      * Saves a tag entity.
@@ -36,7 +59,7 @@ public class InMemoryTagService implements TagService {
      */
     @Override
     @LoggingAnnotation
-    public TagDTO saveTag(Tag tag) throws BadRequestException {
+    public TagDTO saveTag(final Tag tag) throws BadRequestException {
         if (tag.getName() == null) {
             throw new BadRequestException(NO_NAME_PROVIDED);
         }
@@ -49,11 +72,13 @@ public class InMemoryTagService implements TagService {
      *
      * @param tags The list of tag entities to be saved.
      * @return The list of saved tag DTOs.
-     * @throws BadRequestException If no tags are provided or if no name is provided for any tag.
+     * @throws BadRequestException If no tags are provided
+     * or if no name is provided for any tag.
      */
     @Override
     @LoggingAnnotation
-    public List<TagDTO> saveTags(List<Tag> tags) throws BadRequestException {
+    public List<TagDTO> saveTags(final List<Tag> tags)
+            throws BadRequestException {
         if (tags.isEmpty()) {
             throw new BadRequestException(NO_TAGS_PROVIDED);
         }
@@ -84,9 +109,10 @@ public class InMemoryTagService implements TagService {
      * @throws ResourceNotFoundException If no tag is found with the given ID.
      */
     @Override
-    public TagDTO getTagById(Long id) throws ResourceNotFoundException {
+    public TagDTO getTagById(final Long id) throws ResourceNotFoundException {
         return mapper.toDTO(repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(NO_TAG_EXIST_WITH_ID + id)));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        NO_TAG_EXIST_WITH_ID + id)));
     }
 
     /**
@@ -97,9 +123,11 @@ public class InMemoryTagService implements TagService {
      * @throws ResourceNotFoundException If no tag is found with the given name.
      */
     @Override
-    public TagDTO getTagByName(String name) throws ResourceNotFoundException {
+    public TagDTO getTagByName(final String name)
+            throws ResourceNotFoundException {
         return mapper.toDTO(repository.findByName(name)
-                .orElseThrow(() -> new ResourceNotFoundException(NO_TAG_EXIST_WITH_NAME + name)));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        NO_TAG_EXIST_WITH_NAME + name)));
     }
 
     /**
@@ -111,9 +139,10 @@ public class InMemoryTagService implements TagService {
      */
     @Override
     @LoggingAnnotation
-    public String deleteTag(Long id) throws ResourceNotFoundException {
+    public String deleteTag(final Long id) throws ResourceNotFoundException {
         Tag tag = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(NO_TAG_EXIST_WITH_ID + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        NO_TAG_EXIST_WITH_ID + id));
         repository.deleteById(id);
         return "tag removed!! " + id;
     }
@@ -127,14 +156,15 @@ public class InMemoryTagService implements TagService {
      */
     @Override
     @LoggingAnnotation
-    public TagDTO updateTag(Tag tag) throws BadRequestException {
+    public TagDTO updateTag(final Tag tag) throws BadRequestException {
         if (tag.getName() == null) {
             throw new BadRequestException(NO_NAME_PROVIDED);
         }
         Tag existingTag;
         try {
             existingTag = repository.findById(tag.getId())
-                    .orElseThrow(() -> new ResourceNotFoundException(NO_TAG_EXIST_WITH_ID + tag.getId()));
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            NO_TAG_EXIST_WITH_ID + tag.getId()));
         } catch (ResourceNotFoundException exception) {
             existingTag = new Tag();
             existingTag.setId(tag.getId());

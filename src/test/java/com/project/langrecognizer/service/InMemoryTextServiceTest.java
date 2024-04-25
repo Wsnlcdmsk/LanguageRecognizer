@@ -49,7 +49,7 @@ class InMemoryTextServiceTest {
         notMockTextMapper = new TextMapper();
         text.setId((long) 1);
         text.setContent("tag content");
-        Language language= new Language();
+        Language language = new Language();
         language.setId((long) 1);
         language.setName("language name");
         List<Tag> tags = new ArrayList<>();
@@ -207,5 +207,9 @@ class InMemoryTextServiceTest {
     @Test
     void testTextDelete_NotValidObject(){
         assertThrows(ResourceNotFoundException.class, () -> textService.deleteText((long) 100));
+    }
+    @Test
+    void testAddListOfTextToLanguage1_NotValidObject(){
+        assertThrows(NullPointerException.class, () -> textService.addListOfTextToLanguage(null, (long)1));
     }
 }

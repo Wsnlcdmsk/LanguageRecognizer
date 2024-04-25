@@ -5,6 +5,8 @@ package com.project.langrecognizer.service;
 
 import com.project.langrecognizer.dto.LanguageDTO;
 import com.project.langrecognizer.model.Language;
+import com.project.langrecognizer.model.Text;
+
 import java.util.List;
 
 public interface LanguageService {
@@ -69,5 +71,5 @@ public interface LanguageService {
      * @param language The language entity with updated information.
      * @return The updated language DTO.
      */
-    LanguageDTO updateLanguage(Language language);
+    LanguageDTO updateLanguage(Language language);;
 }

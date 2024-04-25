@@ -1,5 +1,6 @@
 /**
- * The TagMapper class provides methods to map between Tag entities and TagDTO data transfer objects.
+ * The TagMapper class provides methods to map between Tag entities
+ * and TagDTO data transfer objects.
  */
 package com.project.langrecognizer.mapper;
 
@@ -63,7 +64,7 @@ public class TagMapper {
      */
     public List<Tag> toEntitys(final List<TagDTO> tagDTOs) {
         List<Tag> tags = new ArrayList<>();
-        for(TagDTO tagDTO : tagDTOs) {
+        for (TagDTO tagDTO : tagDTOs) {
             tags.add(this.toEntity(tagDTO));
         }
         return tags;

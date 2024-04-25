@@ -3056,3 +3056,84 @@ List of constraint violations:[
 2024-04-18 19:37:59.659 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-04-18 19:37:59.719 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2024-04-18 19:37:59.835 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-23 13:09:00.078 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-04-23 13:09:00.146 [main] INFO  c.p.l.LangRecognizerApplication - Starting LangRecognizerApplication using Java 17.0.10 with PID 24052 (C:\JavaSpring\langrecognizer\target\classes started by perto in C:\JavaSpring\LangRecognizer)
+2024-04-23 13:09:00.148 [main] INFO  c.p.l.LangRecognizerApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-23 13:09:01.579 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-23 13:09:01.902 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 301 ms. Found 3 JPA repository interfaces.
+2024-04-23 13:09:03.432 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-23 13:09:03.466 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-23 13:09:03.470 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-23 13:09:03.473 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-04-23 13:09:03.583 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-23 13:09:03.585 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3373 ms
+2024-04-23 13:09:03.962 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-23 13:09:04.167 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-04-23 13:09:04.247 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-04-23 13:09:04.651 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-04-23 13:09:04.694 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-23 13:09:05.641 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1791e231
+2024-04-23 13:09:05.645 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-23 13:09:08.323 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-04-23 13:09:08.776 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-23 13:09:10.408 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-04-23 13:09:12.314 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-23 13:09:14.922 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-04-23 13:09:16.130 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-23 13:09:16.204 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-23 13:09:16.241 [main] INFO  c.p.l.LangRecognizerApplication - Started LangRecognizerApplication in 16.722 seconds (process running for 18.225)
+2024-04-23 13:10:13.485 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 13:10:13.486 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-23 13:10:13.488 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-04-23 13:11:27.183 [http-nio-8080-exec-6] INFO  c.p.l.aspect.LoggingAspect - Method called: com.project.langrecognizer.controller.LanguageController.saveLanguage with args: [Language(id=null, name=null, texts=[])] 
+2024-04-23 13:11:27.183 [http-nio-8080-exec-6] INFO  c.p.l.aspect.LoggingAspect - Method called: com.project.langrecognizer.service.impl.InMemoryLanguageService.saveLanguage with args: [Language(id=null, name=null, texts=[])] 
+2024-04-23 13:11:27.183 [http-nio-8080-exec-6] INFO  c.p.l.aspect.LoggingAspect - Exception in: com.project.langrecognizer.service.impl.InMemoryLanguageService.saveLanguage with args: [Language(id=null, name=null, texts=[])] cause: No name provided
+2024-04-23 13:11:27.188 [http-nio-8080-exec-6] INFO  c.p.l.aspect.LoggingAspect - Exception in: com.project.langrecognizer.controller.LanguageController.saveLanguage with args: [Language(id=null, name=null, texts=[])] cause: No name provided
+2024-04-23 13:12:52.603 [http-nio-8080-exec-5] INFO  c.p.l.aspect.LoggingAspect - Method called: com.project.langrecognizer.controller.LanguageController.saveLanguage with args: [Language(id=null, name=null, texts=[])] 
+2024-04-23 13:12:52.605 [http-nio-8080-exec-5] INFO  c.p.l.aspect.LoggingAspect - Method called: com.project.langrecognizer.service.impl.InMemoryLanguageService.saveLanguage with args: [Language(id=null, name=null, texts=[])] 
+2024-04-23 13:12:52.605 [http-nio-8080-exec-5] INFO  c.p.l.aspect.LoggingAspect - Exception in: com.project.langrecognizer.service.impl.InMemoryLanguageService.saveLanguage with args: [Language(id=null, name=null, texts=[])] cause: No name provided
+2024-04-23 13:12:52.605 [http-nio-8080-exec-5] INFO  c.p.l.aspect.LoggingAspect - Exception in: com.project.langrecognizer.controller.LanguageController.saveLanguage with args: [Language(id=null, name=null, texts=[])] cause: No name provided
+2024-04-23 13:14:25.905 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-23 13:14:25.919 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-23 13:14:25.943 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-23 13:14:44.415 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-04-23 13:14:44.583 [main] INFO  c.p.l.LangRecognizerApplication - Starting LangRecognizerApplication using Java 17.0.10 with PID 12476 (C:\JavaSpring\langrecognizer\target\classes started by perto in C:\JavaSpring\LangRecognizer)
+2024-04-23 13:14:44.584 [main] INFO  c.p.l.LangRecognizerApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-23 13:14:45.884 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-23 13:14:46.221 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 324 ms. Found 3 JPA repository interfaces.
+2024-04-23 13:14:49.610 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-23 13:14:49.675 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-23 13:14:49.687 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-23 13:14:49.688 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-04-23 13:14:49.992 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-23 13:14:49.993 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5322 ms
+2024-04-23 13:14:50.291 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-23 13:14:50.415 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-04-23 13:14:50.486 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-04-23 13:14:50.933 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-04-23 13:14:50.983 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-23 13:14:51.551 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5d93ff21
+2024-04-23 13:14:51.555 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-23 13:14:53.577 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-04-23 13:14:53.845 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-23 13:14:54.889 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-04-23 13:14:55.877 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-23 13:14:57.167 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-04-23 13:14:57.799 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-23 13:14:57.838 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-23 13:14:57.854 [main] INFO  c.p.l.LangRecognizerApplication - Started LangRecognizerApplication in 13.929 seconds (process running for 15.263)
+2024-04-23 13:16:53.859 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-23 13:16:53.859 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-23 13:16:53.864 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2024-04-23 13:16:55.040 [http-nio-8080-exec-10] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 588 ms
+2024-04-23 13:17:32.931 [http-nio-8080-exec-9] INFO  c.p.l.aspect.LoggingAspect - Method called: com.project.langrecognizer.exception.GlobalExceptionHandler.handleGlobalException with args: [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PATCH' is not supported, ServletWebRequest: uri=/api/v1/language/getLanguages;client=0:0:0:0:0:0:0:1] 
+2024-04-23 13:17:32.937 [http-nio-8080-exec-9] INFO  c.p.l.aspect.LoggingAspect - Method return: com.project.langrecognizer.exception.GlobalExceptionHandler.handleGlobalException with args: [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PATCH' is not supported, ServletWebRequest: uri=/api/v1/language/getLanguages;client=0:0:0:0:0:0:0:1] returned: <500 INTERNAL_SERVER_ERROR Internal Server Error,ErrorDetails(timestamp=2024-04-23T13:17:32.933085500, status=500, error=Ресурсы не найдены: Request method 'PATCH' is not supported, description=uri=/api/v1/language/getLanguages),[]>
+2024-04-23 13:17:32.938 [http-nio-8080-exec-9] INFO  c.p.l.aspect.LoggingAspect - Method executed: com.project.langrecognizer.exception.GlobalExceptionHandler.handleGlobalException with args: [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PATCH' is not supported, ServletWebRequest: uri=/api/v1/language/getLanguages;client=0:0:0:0:0:0:0:1] in 10ms
+2024-04-23 14:57:28.725 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-23 14:57:28.755 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-23 14:57:28.797 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-25 00:31:39.920 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-04-25 00:31:39.996 [main] INFO  c.p.l.LangRecognizerApplication - Starting LangRecognizerApplication using Java 17.0.10 with PID 2800 (C:\JavaSpring\langrecognizer\target\classes started by perto in C:\JavaSpring\LangRecognizer)
+2024-04-25 00:31:39.998 [main] INFO  c.p.l.LangRecognizerApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-25 00:31:41.949 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-25 00:31:42.349 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 383 ms. Found 3 JPA repository interfaces.

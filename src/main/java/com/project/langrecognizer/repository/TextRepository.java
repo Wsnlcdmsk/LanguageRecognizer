@@ -19,7 +19,8 @@ public interface TextRepository extends JpaRepository<Text, Long> {
      * Finds a text entity by its content.
      *
      * @param content The content of the text to search for.
-     * @return An Optional containing the found Text entity, or empty if not found.
+     * @return An Optional containing the found Text entity,
+     * or empty if not found.
      */
     Optional<Text> findByContent(String content);
 

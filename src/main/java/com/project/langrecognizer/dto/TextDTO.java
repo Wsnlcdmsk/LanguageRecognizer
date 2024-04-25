@@ -13,13 +13,21 @@ import java.util.List;
 
 @Data
 public class TextDTO {
+    /** The id of the comment. */
     private Long id;
+
+    /** The minimum length of a comment content. */
+    private static final int MIN_CONTENT_LENGHT = 3;
+
+    /** The maximum length of a comment content. */
+    private static final int MAX_CONTENT_LENGHT = 500;
+
 
     /**
      * Содержание текста.
      */
     @NotBlank
-    @Size(min = 3, max = 500)
+    @Size(min = MIN_CONTENT_LENGHT, max = MAX_CONTENT_LENGHT)
     private String content;
 
     /**

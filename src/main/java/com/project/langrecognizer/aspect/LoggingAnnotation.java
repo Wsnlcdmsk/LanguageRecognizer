@@ -1,6 +1,3 @@
-/**
- * This package contains aspects for logging in the language recognizer project.
- */
 package com.project.langrecognizer.aspect;
 
 import java.lang.annotation.ElementType;

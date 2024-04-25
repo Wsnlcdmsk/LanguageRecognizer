@@ -12,13 +12,21 @@ import java.util.List;
 
 @Data
 public class LanguageDTO {
+    /** The id of the tag. */
     private Long id;
+
+    /** The minimum length of a tag name. */
+    private static final int MIN_NAME_LENGHT = 3;
+
+    /** The maximum length of a tag name. */
+    private static final int MAX_NAME_LENGHT = 30;
+
 
     /**
      * Название языка.
      */
     @NotBlank
-    @Size(min = 3, max = 30)
+    @Size(min = MIN_NAME_LENGHT, max = MAX_NAME_LENGHT)
     private String name;
 
     /**
