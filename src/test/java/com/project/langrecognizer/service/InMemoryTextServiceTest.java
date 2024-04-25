@@ -209,8 +209,7 @@ class InMemoryTextServiceTest {
         assertThrows(ResourceNotFoundException.class, () -> textService.deleteText((long) 100));
     }
     @Test
-    void testAddListOfTextToLanguage1_NotValidObject(){
+    void testAddListOfTextToLanguage_NotValidObject(){
         assertThrows(NullPointerException.class, () -> textService.addListOfTextToLanguage(null, (long)1));
     }
-    //
 }

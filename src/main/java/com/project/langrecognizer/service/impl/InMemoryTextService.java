@@ -20,6 +20,7 @@ import com.project.langrecognizer.service.TextService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -235,10 +236,11 @@ public class InMemoryTextService implements TextService {
      */
     public String addListOfTextToLanguage(List<Text> texts, Long id)
             throws BadRequestException{
-        Language language = languageRepository.findById(id).get();
-        if(language == null) {
+        Optional<Language> languageOptional = languageRepository.findById(id);
+        if(languageOptional.isEmpty()){
             throw new BadRequestException(NO_LANGUAGE_EXIST_WITH_ID + id);
         }
+        Language language = languageOptional.get();
         texts.stream().filter(text -> language.getTexts().stream()
                         .noneMatch(pnc -> pnc.getContent().equals(text.getContent())))
                 .forEach(text -> {
