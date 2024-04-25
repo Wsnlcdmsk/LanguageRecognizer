@@ -66,6 +66,11 @@ public class InMemoryTextService implements TextService {
     private static final String NO_LANGUAGE_EXIST_WITH_ID =
             "No language exist wuth id";
 
+    /** The error message to be thrown when no
+     * language repository is null. */
+    private static final String LANGUAGE_REPOSITORY_IS_NULL =
+            "No language exist wuth id";
+
     /**
      * Saves a text entity.
      *
@@ -236,6 +241,9 @@ public class InMemoryTextService implements TextService {
      */
     public String addListOfTextToLanguage(List<Text> texts, Long id)
             throws BadRequestException{
+        if(languageRepository == null){
+            throw new BadRequestException(LANGUAGE_REPOSITORY_IS_NULL);
+        }
         Optional<Language> languageOptional = languageRepository.findById(id);
         if(languageOptional.isEmpty()){
             throw new BadRequestException(NO_LANGUAGE_EXIST_WITH_ID + id);

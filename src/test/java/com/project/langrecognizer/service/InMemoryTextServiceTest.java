@@ -210,6 +210,6 @@ class InMemoryTextServiceTest {
     }
     @Test
     void testAddListOfTextToLanguage_NotValidObject(){
-        assertThrows(NullPointerException.class, () -> textService.addListOfTextToLanguage(null, (long)1));
+        assertThrows(BadRequestException.class, () -> textService.addListOfTextToLanguage(null, (long)1));
     }
 }
