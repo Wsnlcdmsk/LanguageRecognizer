@@ -51,8 +51,6 @@ public class ExternalApiService {
                         "APY0gCUDWWVG4oiF0p9D5Slbo4Ireht1hypbraa"
                                 + "WggXoDyH7V5RjLlVUhdK0nDKH0A1nlI3")
                 .build();
-
-        try {
             HttpResponse<String> response = client.
                     send(request, HttpResponse.BodyHandlers.ofString());
             ObjectMapper objectMapper = new ObjectMapper();
@@ -62,12 +60,5 @@ public class ExternalApiService {
             Language language = new Language();
             language.setName(detectedLanguage);
             return language;
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new BadRequestException("Your request was interrupted");
-        } catch (Exception e) {
-            throw new BadRequestException("Your request was interrupted");
-        }
     }
-
 }
