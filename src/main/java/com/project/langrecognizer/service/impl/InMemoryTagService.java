@@ -5,6 +5,7 @@
 package com.project.langrecognizer.service.impl;
 
 import com.project.langrecognizer.aspect.LoggingAnnotation;
+import com.project.langrecognizer.aspect.RequestCounterAnnotation;
 import com.project.langrecognizer.dto.TagDTO;
 import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.exception.ResourceNotFoundException;
@@ -97,6 +98,7 @@ public class InMemoryTagService implements TagService {
      * @return A list of tag DTOs.
      */
     @Override
+    @RequestCounterAnnotation
     public List<TagDTO> getTags() {
         return mapper.toDTOs(repository.findAll());
     }

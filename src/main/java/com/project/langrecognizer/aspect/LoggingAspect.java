@@ -37,6 +37,10 @@ public final class LoggingAspect {
     public void methodsWithAspectAnnotation() {
     }
 
+    @Pointcut("@annotation("
+            + "com.project.langrecognizer.aspect.LoggingAnnotationException)")
+    public void error() {
+    }
     /**
      * Advice to log method calls.
      * @param joinPoint The join point representing the method call.
@@ -58,15 +62,13 @@ public final class LoggingAspect {
         logInfo(joinPoint, "Method return", "returned: " + result);
     }
 
-    /**
-     * Advice to log exceptions thrown by methods.
-     * @param joinPoint The join point representing the method call.
-     * @param exception The exception thrown by the method.
-     */
-    @AfterThrowing(pointcut = "allMethods()", throwing = "exception")
-    public void logException(final JoinPoint joinPoint,
-                             final Throwable exception) {
-        logInfo(joinPoint, "Exception in", "cause: " + exception.getMessage());
+
+    @Before("error()")
+    public void logException(final JoinPoint joinPoint) {
+        log.error("123ц{}: {}.{} with args: {} {}",
+                "Exception in", joinPoint.getSignature().getDeclaringTypeName(),
+                joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()),
+                "cause: ");
     }
 
     /**

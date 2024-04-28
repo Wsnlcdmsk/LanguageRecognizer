@@ -5,7 +5,6 @@ package com.project.langrecognizer.controller;
 
 import com.project.langrecognizer.aspect.LoggingAnnotation;
 import com.project.langrecognizer.dto.TextDTO;
-import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.model.Text;
 import com.project.langrecognizer.service.TextService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -147,7 +146,7 @@ public class TextController {
     @Operation(summary = "Добаыление текстов в существующий тэг")
     @PostMapping("/saveTextInExistingLanguage")
     public String addListOfTextToLanguage(
-            @RequestBody List<Text> texts, @PathVariable Long id){
+            @RequestBody final List<Text> texts, final @PathVariable Long id) {
         return service.addListOfTextToLanguage(texts, id);
     }
 }

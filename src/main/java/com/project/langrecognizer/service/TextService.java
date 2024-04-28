@@ -1,8 +1,6 @@
 package com.project.langrecognizer.service;
 
 import com.project.langrecognizer.dto.TextDTO;
-import com.project.langrecognizer.exception.BadRequestException;
-import com.project.langrecognizer.model.Tag;
 import com.project.langrecognizer.model.Text;
 
 import java.util.List;

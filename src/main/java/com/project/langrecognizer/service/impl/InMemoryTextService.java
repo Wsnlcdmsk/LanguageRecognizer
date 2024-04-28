@@ -7,6 +7,7 @@
 package com.project.langrecognizer.service.impl;
 
 import com.project.langrecognizer.aspect.LoggingAnnotation;
+import com.project.langrecognizer.aspect.RequestCounterAnnotation;
 import com.project.langrecognizer.dto.TextDTO;
 import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.exception.ResourceNotFoundException;
@@ -118,6 +119,7 @@ public class InMemoryTextService implements TextService {
      * @return A list of text DTOs.
      */
     @Override
+    @RequestCounterAnnotation
     public List<TextDTO> getTexts() {
         return mapper.toDTOs(textRepository.findAll());
     }
@@ -239,13 +241,13 @@ public class InMemoryTextService implements TextService {
      * @return Сообщение об ошибке или null, если операция выполнена успешно.
      * @throws BadRequestException Если язык с указанным идентификатором не существует.
      */
-    public String addListOfTextToLanguage(List<Text> texts, Long id)
-            throws BadRequestException{
-        if(languageRepository == null){
+    public String addListOfTextToLanguage(final List<Text> texts, final Long id)
+            throws BadRequestException {
+        if (languageRepository == null) {
             throw new BadRequestException(LANGUAGE_REPOSITORY_IS_NULL);
         }
         Optional<Language> languageOptional = languageRepository.findById(id);
-        if(languageOptional.isEmpty()){
+        if (languageOptional.isEmpty()) {
             throw new BadRequestException(NO_LANGUAGE_EXIST_WITH_ID + id);
         }
         Language language = languageOptional.get();

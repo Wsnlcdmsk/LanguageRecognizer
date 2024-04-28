@@ -5,13 +5,13 @@
 package com.project.langrecognizer.service.impl;
 
 import com.project.langrecognizer.aspect.LoggingAnnotation;
+import com.project.langrecognizer.aspect.RequestCounterAnnotation;
 import com.project.langrecognizer.cache.Cache;
 import com.project.langrecognizer.dto.LanguageDTO;
 import com.project.langrecognizer.exception.BadRequestException;
 import com.project.langrecognizer.exception.ResourceNotFoundException;
 import com.project.langrecognizer.mapper.LanguageMapper;
 import com.project.langrecognizer.model.Language;
-import com.project.langrecognizer.model.Text;
 import com.project.langrecognizer.repository.LanguageRepository;
 import com.project.langrecognizer.service.LanguageService;
 import lombok.AllArgsConstructor;
@@ -121,6 +121,7 @@ public class InMemoryLanguageService implements LanguageService {
      * @return A list of language DTOs.
      */
     @Override
+    @RequestCounterAnnotation
     public List<LanguageDTO> getLanguages() {
         return mapper.toDTOs(languageRepository.findAll());
     }

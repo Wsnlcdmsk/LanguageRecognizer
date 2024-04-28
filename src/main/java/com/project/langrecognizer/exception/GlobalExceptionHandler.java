@@ -5,6 +5,7 @@
 package com.project.langrecognizer.exception;
 
 import com.project.langrecognizer.aspect.LoggingAnnotation;
+import com.project.langrecognizer.aspect.LoggingAnnotationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,7 +32,7 @@ public class GlobalExceptionHandler {
      * @param request   Запрос.
      * @return ResponseEntity с деталями ошибки и статусом NOT_FOUND.
      */
-    @LoggingAnnotation
+    @LoggingAnnotationException
     @ExceptionHandler({ResourceNotFoundException.class})
     public ResponseEntity<ErrorDetails> handleResourceNotFoundException(
             final ResourceNotFoundException exception,
@@ -50,7 +51,7 @@ public class GlobalExceptionHandler {
      * @param request   Запрос.
      * @return ResponseEntity с деталями ошибки и статусом BAD_REQUEST.
      */
-    @LoggingAnnotation
+    @LoggingAnnotationException
     @ExceptionHandler({BadRequestException.class})
     public ResponseEntity<ErrorDetails> handleBadRequestException(
             final BadRequestException exception, final WebRequest request) {
@@ -68,7 +69,7 @@ public class GlobalExceptionHandler {
      * @param request   Запрос.
      * @return ResponseEntity с деталями ошибки и статусом BAD_REQUEST.
      */
-    @LoggingAnnotation
+    @LoggingAnnotationException
     @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<ErrorDetails> handleMethodArgumentNotValidException(
             final MethodArgumentNotValidException exception,
@@ -97,7 +98,7 @@ public class GlobalExceptionHandler {
      * @return ResponseEntity с деталями ошибки и статусом
      * INTERNAL_SERVER_ERROR.
      */
-    @LoggingAnnotation
+    @LoggingAnnotationException
     @ExceptionHandler({Exception.class})
     public ResponseEntity<ErrorDetails> handleGlobalException(
             final Exception exception, final WebRequest request) {
