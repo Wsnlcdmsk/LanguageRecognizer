@@ -144,7 +144,7 @@ public class TextController {
      * @return Сообщение об ошибке или null, если операция выполнена успешно.
      */
     @Operation(summary = "Добаыление текстов в существующий тэг")
-    @PostMapping("/saveTextInExistingLanguage")
+    @PostMapping("/saveTextInExistingLanguage/{id}")
     public String addListOfTextToLanguage(
             @RequestBody final List<Text> texts, final @PathVariable Long id) {
         return service.addListOfTextToLanguage(texts, id);

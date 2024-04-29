@@ -3840,3 +3840,233 @@ Caused by: java.lang.IllegalArgumentException: error at ::0 formal unbound in po
 2024-04-25 14:11:15.949 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-04-25 14:11:15.953 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2024-04-25 14:11:15.970 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-29 02:27:00.746 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-04-29 02:27:00.873 [main] INFO  c.p.l.LangRecognizerApplication - Starting LangRecognizerApplication using Java 17.0.10 with PID 26816 (C:\JavaSpring\langrecognizer\target\classes started by perto in C:\JavaSpring\LangRecognizer)
+2024-04-29 02:27:00.876 [main] INFO  c.p.l.LangRecognizerApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-29 02:27:03.581 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-29 02:27:04.028 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 431 ms. Found 3 JPA repository interfaces.
+2024-04-29 02:27:05.789 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-29 02:27:05.821 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-29 02:27:05.826 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-29 02:27:05.826 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-04-29 02:27:05.979 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-29 02:27:05.979 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4959 ms
+2024-04-29 02:27:06.489 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-29 02:27:06.676 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-04-29 02:27:06.766 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-04-29 02:27:07.338 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-04-29 02:27:07.415 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-29 02:27:08.463 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@401b67a9
+2024-04-29 02:27:08.468 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-29 02:27:11.267 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-04-29 02:27:11.730 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-29 02:27:12.961 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-04-29 02:27:14.388 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-29 02:27:16.605 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-04-29 02:27:17.279 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-29 02:27:17.341 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-29 02:27:17.366 [main] INFO  c.p.l.LangRecognizerApplication - Started LangRecognizerApplication in 17.95 seconds (process running for 20.711)
+2024-04-29 02:31:40.462 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-29 02:31:40.463 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-29 02:31:40.466 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-04-29 02:31:40.540 [http-nio-8080-exec-2] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 1
+2024-04-29 02:35:49.158 [http-nio-8080-exec-7] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 2
+2024-04-29 02:42:19.559 [http-nio-8080-exec-4] ERROR c.p.l.aspect.LoggingAspect - 123цException in: com.project.langrecognizer.exception.GlobalExceptionHandler.handleGlobalException with args: [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource ., ServletWebRequest: uri=/;client=0:0:0:0:0:0:0:1] cause: 
+2024-04-29 02:42:20.537 [http-nio-8080-exec-5] ERROR c.p.l.aspect.LoggingAspect - 123цException in: com.project.langrecognizer.exception.GlobalExceptionHandler.handleGlobalException with args: [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource ., ServletWebRequest: uri=/;client=0:0:0:0:0:0:0:1] cause: 
+2024-04-29 02:42:29.167 [http-nio-8080-exec-3] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 1086 ms
+2024-04-29 02:48:34.708 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-29 02:48:34.759 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-29 02:48:34.873 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-29 02:48:55.235 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-04-29 02:48:55.333 [main] INFO  c.p.l.LangRecognizerApplication - Starting LangRecognizerApplication using Java 17.0.10 with PID 2100 (C:\JavaSpring\langrecognizer\target\classes started by perto in C:\JavaSpring\LangRecognizer)
+2024-04-29 02:48:55.333 [main] INFO  c.p.l.LangRecognizerApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-29 02:48:57.117 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-29 02:48:57.522 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 382 ms. Found 3 JPA repository interfaces.
+2024-04-29 02:48:58.882 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-29 02:48:58.898 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-29 02:48:58.898 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-29 02:48:58.898 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-04-29 02:48:59.038 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-29 02:48:59.038 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3579 ms
+2024-04-29 02:48:59.360 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-29 02:48:59.501 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-04-29 02:48:59.563 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-04-29 02:49:00.079 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-04-29 02:49:00.126 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-29 02:49:00.735 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@183ef89a
+2024-04-29 02:49:00.751 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-29 02:49:02.743 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-04-29 02:49:02.916 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-29 02:49:03.604 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-04-29 02:49:04.580 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-29 02:49:06.032 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-04-29 02:49:06.513 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-29 02:49:06.556 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-29 02:49:06.575 [main] INFO  c.p.l.LangRecognizerApplication - Started LangRecognizerApplication in 12.07 seconds (process running for 13.685)
+2024-04-29 02:50:01.548 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-29 02:50:01.548 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-29 02:50:01.564 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-04-29 02:50:39.127 [http-nio-8080-exec-7] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 7
+2024-04-29 02:50:39.128 [http-nio-8080-exec-5] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 7
+2024-04-29 02:50:39.128 [http-nio-8080-exec-10] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 7
+2024-04-29 02:50:39.127 [http-nio-8080-exec-2] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 7
+2024-04-29 02:50:39.128 [http-nio-8080-exec-6] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 7
+2024-04-29 02:50:39.129 [http-nio-8080-exec-1] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 7
+2024-04-29 02:50:39.129 [http-nio-8080-exec-9] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 7
+2024-04-29 02:50:39.132 [http-nio-8080-exec-8] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 8
+2024-04-29 02:50:39.147 [http-nio-8080-exec-3] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 9
+2024-04-29 02:50:39.147 [http-nio-8080-exec-4] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 10
+2024-04-29 02:50:39.165 [http-nio-8080-exec-11] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 11
+2024-04-29 02:50:39.179 [http-nio-8080-exec-12] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 13
+2024-04-29 02:50:39.179 [http-nio-8080-exec-13] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 13
+2024-04-29 02:50:39.210 [http-nio-8080-exec-14] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 14
+2024-04-29 02:50:39.223 [http-nio-8080-exec-15] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 15
+2024-04-29 02:50:39.223 [http-nio-8080-exec-16] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 16
+2024-04-29 02:50:39.233 [http-nio-8080-exec-17] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 17
+2024-04-29 02:50:39.239 [http-nio-8080-exec-18] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 18
+2024-04-29 02:50:39.277 [http-nio-8080-exec-22] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 21
+2024-04-29 02:50:39.277 [http-nio-8080-exec-21] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 21
+2024-04-29 02:50:39.280 [http-nio-8080-exec-19] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 22
+2024-04-29 02:50:39.277 [http-nio-8080-exec-20] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 21
+2024-04-29 02:50:39.288 [http-nio-8080-exec-23] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 23
+2024-04-29 02:50:39.301 [http-nio-8080-exec-24] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 24
+2024-04-29 02:50:39.330 [http-nio-8080-exec-25] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 25
+2024-04-29 02:50:39.333 [http-nio-8080-exec-28] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 26
+2024-04-29 02:50:39.357 [http-nio-8080-exec-27] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 27
+2024-04-29 02:50:39.375 [http-nio-8080-exec-26] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 28
+2024-04-29 02:50:39.399 [http-nio-8080-exec-30] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 29
+2024-04-29 02:50:39.399 [http-nio-8080-exec-29] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 30
+2024-04-29 02:50:39.402 [http-nio-8080-exec-33] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 31
+2024-04-29 02:50:39.405 [http-nio-8080-exec-31] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 32
+2024-04-29 02:50:39.413 [http-nio-8080-exec-32] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 33
+2024-04-29 02:50:39.480 [http-nio-8080-exec-34] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 34
+2024-04-29 02:50:39.481 [http-nio-8080-exec-35] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 35
+2024-04-29 02:50:39.482 [http-nio-8080-exec-36] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 36
+2024-04-29 02:50:39.482 [http-nio-8080-exec-37] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 37
+2024-04-29 02:50:39.484 [http-nio-8080-exec-38] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 38
+2024-04-29 02:50:39.494 [http-nio-8080-exec-44] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 39
+2024-04-29 02:50:39.494 [http-nio-8080-exec-39] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 40
+2024-04-29 02:50:39.497 [http-nio-8080-exec-42] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 41
+2024-04-29 02:50:39.498 [http-nio-8080-exec-41] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 42
+2024-04-29 02:50:39.506 [http-nio-8080-exec-43] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 44
+2024-04-29 02:50:39.506 [http-nio-8080-exec-40] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 44
+2024-04-29 02:50:39.518 [http-nio-8080-exec-45] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 45
+2024-04-29 02:50:39.522 [http-nio-8080-exec-46] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 46
+2024-04-29 02:50:39.546 [http-nio-8080-exec-47] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 47
+2024-04-29 02:50:39.551 [http-nio-8080-exec-49] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 48
+2024-04-29 02:50:39.554 [http-nio-8080-exec-48] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 49
+2024-04-29 02:50:39.563 [http-nio-8080-exec-50] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 50
+2024-04-29 02:50:39.604 [http-nio-8080-exec-52] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 51
+2024-04-29 02:50:39.608 [http-nio-8080-exec-51] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 52
+2024-04-29 02:50:39.617 [http-nio-8080-exec-53] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 53
+2024-04-29 02:50:39.617 [http-nio-8080-exec-54] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 55
+2024-04-29 02:50:39.617 [http-nio-8080-exec-55] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 54
+2024-04-29 02:50:39.646 [http-nio-8080-exec-58] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 57
+2024-04-29 02:50:39.646 [http-nio-8080-exec-57] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 57
+2024-04-29 02:50:39.656 [http-nio-8080-exec-56] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 58
+2024-04-29 02:50:39.663 [http-nio-8080-exec-59] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 59
+2024-04-29 02:50:39.671 [http-nio-8080-exec-60] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 60
+2024-04-29 02:50:39.674 [http-nio-8080-exec-61] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 61
+2024-04-29 02:50:39.687 [http-nio-8080-exec-62] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 62
+2024-04-29 02:50:39.690 [http-nio-8080-exec-63] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 63
+2024-04-29 02:50:39.713 [http-nio-8080-exec-64] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 64
+2024-04-29 02:50:39.718 [http-nio-8080-exec-66] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 66
+2024-04-29 02:50:39.718 [http-nio-8080-exec-65] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 66
+2024-04-29 02:50:39.734 [http-nio-8080-exec-67] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 67
+2024-04-29 02:50:39.744 [http-nio-8080-exec-68] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 68
+2024-04-29 02:50:39.748 [http-nio-8080-exec-69] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 69
+2024-04-29 02:50:39.757 [http-nio-8080-exec-70] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 70
+2024-04-29 02:50:39.765 [http-nio-8080-exec-71] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 71
+2024-04-29 02:50:39.801 [http-nio-8080-exec-72] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 72
+2024-04-29 02:50:39.803 [http-nio-8080-exec-73] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 73
+2024-04-29 02:50:39.804 [http-nio-8080-exec-74] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 74
+2024-04-29 02:50:39.836 [http-nio-8080-exec-77] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 75
+2024-04-29 02:50:39.886 [http-nio-8080-exec-75] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 76
+2024-04-29 02:50:39.924 [http-nio-8080-exec-8] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 77
+2024-04-29 02:50:39.934 [http-nio-8080-exec-3] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 78
+2024-04-29 02:50:39.940 [http-nio-8080-exec-76] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 79
+2024-04-29 02:50:39.943 [http-nio-8080-exec-7] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 80
+2024-04-29 02:50:39.974 [http-nio-8080-exec-11] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 81
+2024-04-29 02:50:39.989 [http-nio-8080-exec-14] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 82
+2024-04-29 02:50:40.005 [http-nio-8080-exec-13] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 83
+2024-04-29 02:50:40.012 [http-nio-8080-exec-12] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 84
+2024-04-29 02:50:40.037 [http-nio-8080-exec-15] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 85
+2024-04-29 02:50:40.037 [http-nio-8080-exec-87] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 86
+2024-04-29 02:50:40.053 [http-nio-8080-exec-18] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 87
+2024-04-29 02:50:40.162 [http-nio-8080-exec-79] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 89
+2024-04-29 02:50:40.162 [http-nio-8080-exec-84] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 90
+2024-04-29 02:50:40.162 [http-nio-8080-exec-88] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 91
+2024-04-29 02:50:40.162 [http-nio-8080-exec-91] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 92
+2024-04-29 02:50:40.162 [http-nio-8080-exec-80] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 89
+2024-04-29 02:50:40.162 [http-nio-8080-exec-83] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 94
+2024-04-29 02:50:40.162 [http-nio-8080-exec-92] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 94
+2024-04-29 02:50:40.178 [http-nio-8080-exec-81] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 96
+2024-04-29 02:50:40.178 [http-nio-8080-exec-78] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 96
+2024-04-29 02:50:40.178 [http-nio-8080-exec-82] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 97
+2024-04-29 02:50:40.178 [http-nio-8080-exec-86] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 98
+2024-04-29 02:50:40.178 [http-nio-8080-exec-85] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 99
+2024-04-29 02:50:40.178 [http-nio-8080-exec-90] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 100
+2024-04-29 02:51:32.363 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-29 02:51:32.368 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-29 02:51:32.382 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-30 01:29:48.483 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-04-30 01:29:48.567 [main] INFO  c.p.l.LangRecognizerApplication - Starting LangRecognizerApplication using Java 17.0.10 with PID 6504 (C:\JavaSpring\langrecognizer\target\classes started by perto in C:\JavaSpring\LangRecognizer)
+2024-04-30 01:29:48.569 [main] INFO  c.p.l.LangRecognizerApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-30 01:29:50.387 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-30 01:29:50.809 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 399 ms. Found 3 JPA repository interfaces.
+2024-04-30 01:29:52.325 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-30 01:29:52.340 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-30 01:29:52.356 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-30 01:29:52.356 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-04-30 01:29:52.497 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-30 01:29:52.497 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3857 ms
+2024-04-30 01:29:52.872 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-30 01:29:53.012 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-04-30 01:29:53.106 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-04-30 01:29:53.681 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-04-30 01:29:53.744 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-30 01:29:54.861 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@50b38342
+2024-04-30 01:29:54.861 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-30 01:29:57.358 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-04-30 01:29:57.811 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-30 01:29:58.748 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-04-30 01:29:59.936 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-30 01:30:01.633 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-04-30 01:30:02.320 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-30 01:30:02.414 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-30 01:30:02.430 [main] INFO  c.p.l.LangRecognizerApplication - Started LangRecognizerApplication in 14.504 seconds (process running for 17.198)
+2024-04-30 01:31:06.686 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-30 01:31:06.690 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-30 01:31:06.705 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-30 01:31:18.296 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-04-30 01:31:18.368 [main] INFO  c.p.l.LangRecognizerApplication - Starting LangRecognizerApplication using Java 17.0.10 with PID 20384 (C:\JavaSpring\langrecognizer\target\classes started by perto in C:\JavaSpring\LangRecognizer)
+2024-04-30 01:31:18.370 [main] INFO  c.p.l.LangRecognizerApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-30 01:31:20.147 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-30 01:31:20.503 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 320 ms. Found 3 JPA repository interfaces.
+2024-04-30 01:31:22.007 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-30 01:31:22.036 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-30 01:31:22.039 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-30 01:31:22.040 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-04-30 01:31:22.172 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-30 01:31:22.173 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3723 ms
+2024-04-30 01:31:22.736 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-30 01:31:22.920 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-04-30 01:31:23.050 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-04-30 01:31:23.717 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-04-30 01:31:23.772 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-30 01:31:24.333 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@146833a2
+2024-04-30 01:31:24.337 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-30 01:31:26.586 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-04-30 01:31:26.736 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-30 01:31:27.794 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-04-30 01:31:28.881 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-30 01:31:30.551 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-04-30 01:31:31.144 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-30 01:31:31.185 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-30 01:31:31.205 [main] INFO  c.p.l.LangRecognizerApplication - Started LangRecognizerApplication in 13.453 seconds (process running for 15.029)
+2024-04-30 01:35:28.999 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-30 01:35:29.000 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-30 01:35:29.001 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-04-30 01:35:29.092 [http-nio-8080-exec-3] ERROR c.p.l.aspect.LoggingAspect - Exception in: com.project.langrecognizer.exception.GlobalExceptionHandler.handleGlobalException with args: [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/v1/text/saveTextInExistingLanguage/1., ServletWebRequest: uri=/api/v1/text//saveTextInExistingLanguage/1;client=0:0:0:0:0:0:0:1] cause: 
+2024-04-30 01:36:03.835 [http-nio-8080-exec-5] ERROR c.p.l.aspect.LoggingAspect - Exception in: com.project.langrecognizer.exception.GlobalExceptionHandler.handleGlobalException with args: [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/v1/language/getLanguageByIdd/1., ServletWebRequest: uri=/api/v1/language/getLanguageByIdd/1;client=0:0:0:0:0:0:0:1] cause: 
+2024-04-30 01:36:41.910 [http-nio-8080-exec-9] INFO  c.p.l.aspect.RequestCounterAspect - Increment requestCounter from com.project.langrecognizer.service.impl.InMemoryLanguageService.getLanguages().Current value of requestCounter is 1

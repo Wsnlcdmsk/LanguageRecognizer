@@ -65,7 +65,7 @@ public final class LoggingAspect {
 
     @Before("error()")
     public void logException(final JoinPoint joinPoint) {
-        log.error("123ц{}: {}.{} with args: {} {}",
+        log.error("{}: {}.{} with args: {} {}",
                 "Exception in", joinPoint.getSignature().getDeclaringTypeName(),
                 joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()),
                 "cause: ");
