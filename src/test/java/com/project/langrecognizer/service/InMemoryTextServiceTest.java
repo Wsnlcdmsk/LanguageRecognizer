@@ -35,7 +35,6 @@ class InMemoryTextServiceTest {
     private TextMapper textMapper;
     @InjectMocks
     private InMemoryTextService textService;
-
     private static Text text;
     private static TextDTO textDTO;
     private static List<TextDTO> textDTOs;
