@@ -170,25 +170,21 @@ class InMemoryLanguageServiceTest {
     @ValueSource(strings = {"getLanguageByName",  "deleteLanguage", "getLanguageById"})
     void testNoLanguageExists(String methodName) {
         when(languageRepository.findByName(languageName)).thenReturn(Optional.empty());
-        switch (methodName) {
+        assertThrows(ResourceNotFoundException.class, () -> {
+                switch (methodName) {
             case "getLanguageByName":
-                assertThrows(ResourceNotFoundException.class, () -> {
-                    languageService.getLanguageByName(languageName);
-                });
+                languageService.getLanguageByName(languageName);
                 break;
 
             case "deleteLanguage":
-                assertThrows(ResourceNotFoundException.class, () -> {
-                    languageService.deleteLanguage(languageService.getLanguageByName(languageName).getId());
-                });
+                languageService.deleteLanguage(languageService.getLanguageByName(languageName).getId());
                 break;
 
             case "getLanguageById":
-                assertThrows(ResourceNotFoundException.class, () -> {
-                    languageService.getLanguageById(languageService.getLanguageByName(languageName).getId());
-                });
+                languageService.getLanguageById(languageService.getLanguageByName(languageName).getId());
                 break;
-        }
+            }
+        });
     }
     @Test
     void testLanguageDelete_NotValidObject(){

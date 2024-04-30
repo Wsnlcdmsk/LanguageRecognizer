@@ -182,25 +182,22 @@ class InMemoryTextServiceTest {
     @ValueSource(strings = {"getTextByContent",  "deleteText", "getTextById"})
     void testNoTextExists(String methodName) {
         when(textRepository.findByContent(textContent)).thenReturn(Optional.empty());
-        switch (methodName) {
-            case "getTextByContent":
-                assertThrows(BadRequestException.class, () -> {
+
+        assertThrows(BadRequestException.class, () -> {
+            switch (methodName) {
+                case "getTextByContent":
                     textService.getTextByContent(textContent);
-                });
-                break;
+                    break;
 
-            case "deleteText":
-                assertThrows(BadRequestException.class, () -> {
+                case "deleteText":
                     textService.deleteText(textService.getTextByContent(textContent).getId());
-                });
-                break;
+                    break;
 
-            case "getTextById":
-                assertThrows(BadRequestException.class, () -> {
+                case "getTextById":
                     textService.getTextById(textService.getTextByContent(textContent).getId());
-                });
-                break;
-        }
+                    break;
+            }
+        });
     }
     @Test
     void testSQLQueryRequest_NotValidObject(){
@@ -219,7 +216,7 @@ class InMemoryTextServiceTest {
         assertThrows(BadRequestException.class, () -> textService.addListOfTextToLanguage(null, (long)1));
     }
     @Test
-    public void testAddListOfTextToLanguage_Success() throws BadRequestException {
+    void testAddListOfTextToLanguage_Success() throws BadRequestException {
         // Arrange
         Long languageId = 1L;
         Language language = new Language();
@@ -251,7 +248,7 @@ class InMemoryTextServiceTest {
     }
 
     @Test
-    public void testAddListOfTextToLanguage_LanguageRepositoryIsNull() {
+    void testAddListOfTextToLanguage_LanguageRepositoryIsNull() {
         // Arrange
         List<Text> texts = new ArrayList<>();
         Text text = new Text();
@@ -266,7 +263,7 @@ class InMemoryTextServiceTest {
     }
 
     @Test
-    public void testAddListOfTextToLanguage_LanguageNotFound() {
+    void testAddListOfTextToLanguage_LanguageNotFound() {
         // Arrange
         Long languageId = 1L;
         List<Text> texts = new ArrayList<>();
