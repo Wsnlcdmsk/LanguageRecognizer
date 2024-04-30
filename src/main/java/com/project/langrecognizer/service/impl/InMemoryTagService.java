@@ -142,6 +142,9 @@ public class InMemoryTagService implements TagService {
     @Override
     @LoggingAnnotation
     public String deleteTag(final Long id) throws ResourceNotFoundException {
+        if(!repository.existsById(id)) {
+            throw new ResourceNotFoundException(NO_TAG_EXIST_WITH_ID + id);
+        }
         repository.deleteById(id);
         return "tag removed!! " + id;
     }

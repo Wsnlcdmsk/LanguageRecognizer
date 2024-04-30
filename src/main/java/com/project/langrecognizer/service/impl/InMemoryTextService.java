@@ -164,6 +164,9 @@ public class InMemoryTextService implements TextService {
     @Override
     @LoggingAnnotation
     public String deleteText(final Long id) throws ResourceNotFoundException {
+        if(!textRepository.existsById(id)) {
+            throw new ResourceNotFoundException(NO_TEXT_EXIST_WITH_ID + id);
+        }
         textRepository.deleteById(id);
         return "Text removed: " + id;
     }
