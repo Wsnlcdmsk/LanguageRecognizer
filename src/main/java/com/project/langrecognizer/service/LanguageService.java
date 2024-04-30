@@ -70,5 +70,5 @@ public interface LanguageService {
      * @param language The language entity with updated information.
      * @return The updated language DTO.
      */
-    LanguageDTO updateLanguage(Language language);;
+    LanguageDTO updateLanguage(Language language);
 }

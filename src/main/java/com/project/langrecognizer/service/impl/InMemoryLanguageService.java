@@ -177,9 +177,6 @@ public class InMemoryLanguageService implements LanguageService {
     @LoggingAnnotation
     public String deleteLanguage(final Long id)
             throws ResourceNotFoundException {
-        Language language = languageRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        NO_LANGUAGE_EXIST_WITH_ID + id));
         languageRepository.deleteById(id);
         cache.deleteCachedById(id);
         return "language removed!! " + id;
