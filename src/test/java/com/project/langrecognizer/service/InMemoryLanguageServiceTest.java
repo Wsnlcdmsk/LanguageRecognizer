@@ -42,21 +42,21 @@ class InMemoryLanguageServiceTest {
     private static final int NUM_OF_REPEATS = 5;
 
     @BeforeAll
-    static void setUp(){
-    language = new Language();
-    notMockLanguageMapper = new LanguageMapper();
-    language.setId((long) 1);
-    language.setName("Language name");
-    List<Text> texts = new ArrayList<>();
-    for (int i = 0; i < NUM_OF_REPEATS; i++) {
-        Text text = new Text();
-        text.setId((long) i);
-        text.setContent("Content " + i);
-        text.setLanguage(language);
-        texts.add(text);
-    }
-    language.setTexts(texts);
-    languageDTO = notMockLanguageMapper.toDTO(language);
+    static void setUp() {
+        language = new Language();
+        notMockLanguageMapper = new LanguageMapper();
+        language.setId((long) 1);
+        language.setName("Language name");
+        List<Text> texts = new ArrayList<>();
+        for (int i = 0; i < NUM_OF_REPEATS; i++) {
+            Text text = new Text();
+            text.setId((long) i);
+            text.setContent("Content " + i);
+            text.setLanguage(language);
+            texts.add(text);
+        }
+        language.setTexts(texts);
+        languageDTO = notMockLanguageMapper.toDTO(language);
     }
 
     @Test
@@ -80,6 +80,7 @@ class InMemoryLanguageServiceTest {
             assertEquals("language " + i, result.get(i).getName());
         }
     }
+
     @Test
     void testFindAllLanguages_NoLanguageExist() {
         when(languageRepository.findAll()).thenReturn(new ArrayList<>());
@@ -99,6 +100,7 @@ class InMemoryLanguageServiceTest {
         assertTrue(result.isPresent());
         assertEquals(languageDTO, result.get());
     }
+
     @Test
     void testFindLanguageById_Valid() {
         when(languageRepository.findById((long) 1)).thenReturn(Optional.of(language));
@@ -109,18 +111,18 @@ class InMemoryLanguageServiceTest {
         assertTrue(result.isPresent());
         assertEquals(languageDTO, result.get());
     }
-   @Test
+
+    @Test
     void testSavesLanguages_Valid() {
         List<Language> languages = new ArrayList<>();
-        for(int i = 0; i < NUM_OF_REPEATS; i++)
-        {
+        for (int i = 0; i < NUM_OF_REPEATS; i++) {
             Language tempLanguage = new Language();
             tempLanguage.setId((long) i);
             tempLanguage.setName(languageName + i);
             languages.add(tempLanguage);
         }
-       when(languageRepository.saveAll(languages)).thenReturn(languages);
-       when(languageMapper.toDTOs(languages)).thenReturn(languageDTOs);
+        when(languageRepository.saveAll(languages)).thenReturn(languages);
+        when(languageMapper.toDTOs(languages)).thenReturn(languageDTOs);
 
         List<LanguageDTO> resultLanguageDTOs = languageService.saveLanguages(languages);
 
@@ -133,8 +135,9 @@ class InMemoryLanguageServiceTest {
         List<Language> languages = new ArrayList<>();
         assertThrows(BadRequestException.class, () -> languageService.saveLanguages(languages));
     }
+
     @Test
-    void testSaveLanguage_Valid(){
+    void testSaveLanguage_Valid() {
         when(languageRepository.save(language)).thenReturn(language);
         when(languageMapper.toDTO(language)).thenReturn(languageDTO);
 
@@ -143,6 +146,7 @@ class InMemoryLanguageServiceTest {
         verify(languageRepository, times(1)).save(language);
         assertEquals(languageDTO, resultLanguageDTO);
     }
+
     @Test
     void testUpdateLanguage_Valid() {
         when(languageRepository.save(language)).thenReturn(language);
@@ -167,27 +171,28 @@ class InMemoryLanguageServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"getLanguageByName",  "deleteLanguage", "getLanguageById"})
+    @ValueSource(strings = {"getLanguageByName", "deleteLanguage", "getLanguageById"})
     void testNoLanguageExists(String methodName) {
         when(languageRepository.findByName(languageName)).thenReturn(Optional.empty());
-        assertThrows(ResourceNotFoundException.class, () -> {
-                switch (methodName) {
+        switch (methodName) {
             case "getLanguageByName":
-                languageService.getLanguageByName(languageName);
+                assertThrows(ResourceNotFoundException.class, () -> languageService.getLanguageByName(languageName));
                 break;
 
             case "deleteLanguage":
-                languageService.deleteLanguage(languageService.getLanguageByName(languageName).getId());
+                assertThrows(ResourceNotFoundException.class, () -> languageService.getLanguageByName(languageName)
+                        .getId());
                 break;
 
             case "getLanguageById":
-                languageService.getLanguageById(languageService.getLanguageByName(languageName).getId());
+                assertThrows(ResourceNotFoundException.class, () -> languageService.getLanguageById(languageService
+                        .getLanguageByName(languageName).getId()));
                 break;
-            }
-        });
+        }
     }
+
     @Test
-    void testLanguageDelete_NotValidObject(){
+    void testLanguageDelete_NotValidObject() {
         assertThrows(ResourceNotFoundException.class, () -> languageService.deleteLanguage((long) 100));
     }
 }

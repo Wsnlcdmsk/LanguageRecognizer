@@ -43,7 +43,7 @@ class InMemoryTagServiceTest {
     private static final int NUM_OF_REPEATS = 5;
 
     @BeforeAll
-    static void setUp(){
+    static void setUp() {
         tag = new Tag();
         notMockTagMapper = new TagMapper();
         tag.setId((long) 1);
@@ -81,6 +81,7 @@ class InMemoryTagServiceTest {
             assertEquals("tag " + i, result.get(i).getName());
         }
     }
+
     @Test
     void testFindAllTag_NoTagExist() {
         when(tagRepository.findAll()).thenReturn(new ArrayList<>());
@@ -100,6 +101,7 @@ class InMemoryTagServiceTest {
         assertTrue(result.isPresent());
         assertEquals(tagDTO, result.get());
     }
+
     @Test
     void testFindTagById_Valid() {
         when(tagRepository.findById((long) 1)).thenReturn(Optional.of(tag));
@@ -110,6 +112,7 @@ class InMemoryTagServiceTest {
         assertTrue(result.isPresent());
         assertEquals(tagDTO, result.get());
     }
+
     @Test
     void testSaveTag_Valid() {
         when(tagRepository.save(tag)).thenReturn(tag);
@@ -120,11 +123,11 @@ class InMemoryTagServiceTest {
         verify(tagRepository, times(1)).save(tag);
         assertEquals(tagDTO, resultTagDTO);
     }
+
     @Test
     void testSavesTags_Valid() {
         List<Tag> tags = new ArrayList<>();
-        for(int i = 0; i < NUM_OF_REPEATS; i++)
-        {
+        for (int i = 0; i < NUM_OF_REPEATS; i++) {
             Tag tempTag = new Tag();
             tempTag.setId((long) i);
             tempTag.setName(tagName + i);
@@ -138,11 +141,13 @@ class InMemoryTagServiceTest {
         verify(tagRepository, times(1)).saveAll(tags);
         assertEquals(tagDTOs, resultTagDTOs);
     }
+
     @Test
     void testSavesTags_NotValidObject() {
         List<Tag> tags = new ArrayList<>();
         assertThrows(BadRequestException.class, () -> tagService.saveTags(tags));
     }
+
     @Test
     void testUpdateTag_Valid() {
         when(tagRepository.save(tag)).thenReturn(tag);
@@ -167,27 +172,28 @@ class InMemoryTagServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"getTagByName",  "deleteTag", "getTagById"})
+    @ValueSource(strings = {"getTagByName", "deleteTag", "getTagById"})
     void testNoTagExists(String methodName) {
         when(tagRepository.findByName(tagName)).thenReturn(Optional.empty());
-        assertThrows(ResourceNotFoundException.class, () -> {
-            switch (methodName) {
+        switch (methodName) {
             case "getTagByName":
-                tagService.getTagByName(tagName);
+                assertThrows(ResourceNotFoundException.class, () -> tagService.getTagByName(tagName));
                 break;
 
             case "deleteTag":
-                tagService.deleteTag(tagService.getTagByName(tagName).getId());
+                assertThrows(ResourceNotFoundException.class, () -> tagService.deleteTag(tagService
+                        .getTagByName(tagName).getId()));
                 break;
 
             case "getTagById":
-                tagService.getTagById(tagService.getTagByName(tagName).getId());
+                assertThrows(ResourceNotFoundException.class, () -> tagService.getTagById(tagService
+                        .getTagByName(tagName).getId()));
                 break;
-            }
-        });
+        }
     }
+
     @Test
-    void testTagDelete_NotValidObject(){
+    void testTagDelete_NotValidObject() {
         assertThrows(ResourceNotFoundException.class, () -> tagService.deleteTag((long) 100));
     }
 }

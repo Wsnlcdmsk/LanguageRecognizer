@@ -47,7 +47,7 @@ class InMemoryTextServiceTest {
     private static final int NUM_OF_REPEATS = 5;
 
     @BeforeAll
-    static void setUp(){
+    static void setUp() {
         text = new Text();
         notMockTextMapper = new TextMapper();
         text.setId((long) 1);
@@ -76,7 +76,7 @@ class InMemoryTextServiceTest {
             Text text = new Text();
             text.setId((long) i);
             text.setContent("text " + i);
-            text.setLanguage(new Language((long)i, ("language name " + i), null));
+            text.setLanguage(new Language((long) i, ("language name " + i), null));
             texts.add(text);
         }
         List<TextDTO> textDtos = notMockTextMapper.toDTOs(texts);
@@ -93,6 +93,7 @@ class InMemoryTextServiceTest {
             assertEquals("text " + i, result.get(i).getContent());
         }
     }
+
     @Test
     void testFindAllText_NoTextExist() {
         when(textRepository.findAll()).thenReturn(new ArrayList<>());
@@ -112,6 +113,7 @@ class InMemoryTextServiceTest {
         assertTrue(result.isPresent());
         assertEquals(textDTO, result.get());
     }
+
     @Test
     void testFindTextById_Valid() {
         when(textRepository.findById((long) 1)).thenReturn(Optional.of(text));
@@ -122,6 +124,7 @@ class InMemoryTextServiceTest {
         assertTrue(result.isPresent());
         assertEquals(textDTO, result.get());
     }
+
     @Test
     void testSaveText_Valid() {
         when(textRepository.save(text)).thenReturn(text);
@@ -132,11 +135,11 @@ class InMemoryTextServiceTest {
         verify(textRepository, times(1)).save(text);
         assertEquals(textDTO, resultTextDTO);
     }
+
     @Test
     void testSavesTexts_Valid() {
         List<Text> texts = new ArrayList<>();
-        for(int i = 0; i < NUM_OF_REPEATS; i++)
-        {
+        for (int i = 0; i < NUM_OF_REPEATS; i++) {
             Text tempText = new Text();
             tempText.setId((long) i);
             tempText.setContent(textContent + i);
@@ -150,11 +153,13 @@ class InMemoryTextServiceTest {
         verify(textRepository, times(1)).saveAll(texts);
         assertEquals(textDTOs, resultTextDTOs);
     }
+
     @Test
     void testSavesTexts_NotValidObject() {
         List<Text> texts = new ArrayList<>();
         assertThrows(BadRequestException.class, () -> textService.saveTexts(texts));
     }
+
     @Test
     void testUpdateText_Valid() {
         when(textRepository.save(text)).thenReturn(text);
@@ -179,42 +184,46 @@ class InMemoryTextServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"getTextByContent",  "deleteText", "getTextById"})
+    @ValueSource(strings = {"getTextByContent", "deleteText", "getTextById"})
     void testNoTextExists(String methodName) {
         when(textRepository.findByContent(textContent)).thenReturn(Optional.empty());
+        switch (methodName) {
+            case "getTextByContent":
+                assertThrows(BadRequestException.class, () -> textService.getTextByContent(textContent));
+                break;
 
-        assertThrows(BadRequestException.class, () -> {
-            switch (methodName) {
-                case "getTextByContent":
-                    textService.getTextByContent(textContent);
-                    break;
+            case "deleteText":
+                assertThrows(BadRequestException.class, () -> textService.deleteText(textService
+                        .getTextByContent(textContent).getId()));
+                break;
 
-                case "deleteText":
-                    textService.deleteText(textService.getTextByContent(textContent).getId());
-                    break;
-
-                case "getTextById":
-                    textService.getTextById(textService.getTextByContent(textContent).getId());
-                    break;
-            }
-        });
+            case "getTextById":
+                assertThrows(BadRequestException.class, () -> textService.getTextById(textService
+                        .getTextByContent(textContent).getId()));
+                break;
+        }
     }
+
     @Test
-    void testSQLQueryRequest_NotValidObject(){
+    void testSQLQueryRequest_NotValidObject() {
         assertThrows(BadRequestException.class, () -> textService.findTextsSortedByTag(null));
     }
+
     @Test
-    void testJPQLQueryRequest_NotValidObject(){
+    void testJPQLQueryRequest_NotValidObject() {
         assertThrows(BadRequestException.class, () -> textService.findTextsSortedByLanguage(null));
     }
+
     @Test
-    void testTextDelete_NotValidObject(){
+    void testTextDelete_NotValidObject() {
         assertThrows(ResourceNotFoundException.class, () -> textService.deleteText((long) 100));
     }
+
     @Test
-    void testAddListOfTextToLanguage_NotValidObject(){
-        assertThrows(BadRequestException.class, () -> textService.addListOfTextToLanguage(null, (long)1));
+    void testAddListOfTextToLanguage_NotValidObject() {
+        assertThrows(BadRequestException.class, () -> textService.addListOfTextToLanguage(null, (long) 1));
     }
+
     @Test
     void testAddListOfTextToLanguage_Success() throws BadRequestException {
         // Arrange
