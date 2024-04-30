@@ -40,6 +40,7 @@ class InMemoryTagServiceTest {
     private static List<TagDTO> tagDTOs;
     private static TagMapper notMockTagMapper;
     private final String tagName = "name";
+    private final Long tagId = (long)1;
     private static final int NUM_OF_REPEATS = 5;
 
     @BeforeAll
@@ -181,13 +182,11 @@ class InMemoryTagServiceTest {
                 break;
 
             case "deleteTag":
-                assertThrows(ResourceNotFoundException.class, () -> tagService.deleteTag(tagService
-                        .getTagByName(tagName).getId()));
+                assertThrows(ResourceNotFoundException.class, () -> tagService.deleteTag(tagId));
                 break;
 
             case "getTagById":
-                assertThrows(ResourceNotFoundException.class, () -> tagService.getTagById(tagService
-                        .getTagByName(tagName).getId()));
+                assertThrows(ResourceNotFoundException.class, () -> tagService.getTagById(tagId));
                 break;
         }
     }

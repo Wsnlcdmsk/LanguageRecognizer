@@ -39,6 +39,7 @@ class InMemoryLanguageServiceTest {
     private static List<LanguageDTO> languageDTOs;
     private static LanguageMapper notMockLanguageMapper;
     private final String languageName = "name";
+    private final Long languageId = (long)1;
     private static final int NUM_OF_REPEATS = 5;
 
     @BeforeAll
@@ -180,13 +181,11 @@ class InMemoryLanguageServiceTest {
                 break;
 
             case "deleteLanguage":
-                assertThrows(ResourceNotFoundException.class, () -> languageService.getLanguageByName(languageName)
-                        .getId());
+                assertThrows(ResourceNotFoundException.class, () -> languageService.deleteLanguage(languageId));
                 break;
 
             case "getLanguageById":
-                assertThrows(ResourceNotFoundException.class, () -> languageService.getLanguageById(languageService
-                        .getLanguageByName(languageName).getId()));
+                assertThrows(ResourceNotFoundException.class, () -> languageService.getLanguageById(languageId));
                 break;
         }
     }
