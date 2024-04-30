@@ -3,8 +3,10 @@ package com.project.langrecognizer.service;
 import com.project.langrecognizer.dto.TextDTO;
 import com.project.langrecognizer.mapper.TextMapper;
 import com.project.langrecognizer.model.Language;
+import com.project.langrecognizer.repository.LanguageRepository;
 import com.project.langrecognizer.repository.TextRepository;
 import com.project.langrecognizer.service.impl.InMemoryTextService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -31,6 +33,8 @@ import static org.mockito.Mockito.*;
 class InMemoryTextServiceTest {
     @Mock
     private TextRepository textRepository;
+    @Mock
+    private LanguageRepository languageRepository;
     @Mock
     private TextMapper textMapper;
     @InjectMocks
@@ -179,20 +183,23 @@ class InMemoryTextServiceTest {
     void testNoTextExists(String methodName) {
         when(textRepository.findByContent(textContent)).thenReturn(Optional.empty());
         switch (methodName) {
-            case "getTextByContent": {
-                assertThrows(BadRequestException.class, () -> textService.getTextByContent(textContent));
+            case "getTextByContent":
+                assertThrows(BadRequestException.class, () -> {
+                    textService.getTextByContent(textContent);
+                });
                 break;
-            }
-            case "deleteText": {
-                assertThrows(BadRequestException.class, () -> textService.deleteText(textService.
-                        getTextByContent(textContent).getId()));
+
+            case "deleteText":
+                assertThrows(BadRequestException.class, () -> {
+                    textService.deleteText(textService.getTextByContent(textContent).getId());
+                });
                 break;
-            }
-            case "getTextById": {
-                assertThrows(BadRequestException.class, () -> textService.getTextById(textService.
-                        getTextByContent(textContent).getId()));
+
+            case "getTextById":
+                assertThrows(BadRequestException.class, () -> {
+                    textService.getTextById(textService.getTextByContent(textContent).getId());
+                });
                 break;
-            }
         }
     }
     @Test
@@ -210,5 +217,69 @@ class InMemoryTextServiceTest {
     @Test
     void testAddListOfTextToLanguage_NotValidObject(){
         assertThrows(BadRequestException.class, () -> textService.addListOfTextToLanguage(null, (long)1));
+    }
+    @Test
+    public void testAddListOfTextToLanguage_Success() throws BadRequestException {
+        // Arrange
+        Long languageId = 1L;
+        Language language = new Language();
+        language.setId(languageId);
+        List<Text> texts = new ArrayList<>();
+        Text text1 = new Text();
+        text1.setId(1L);
+        text1.setContent("Text 1");
+        Text text2 = new Text();
+        text2.setId(2L);
+        text2.setContent("Text 2");
+        texts.add(text1);
+        texts.add(text2);
+
+        when(languageRepository.findById(languageId)).thenReturn(Optional.of(language));
+        when(textRepository.save(any(Text.class))).thenReturn(null);
+        when(languageRepository.save(any(Language.class))).thenReturn(null);
+
+        // Act
+        String result = textService.addListOfTextToLanguage(texts, languageId);
+
+        // Assert
+        Assertions.assertEquals("The operation was successful", result);
+        Assertions.assertEquals(2, language.getTexts().size());
+        Assertions.assertEquals(language, text1.getLanguage());
+        Assertions.assertEquals(language, text2.getLanguage());
+        verify(textRepository, times(2)).save(any(Text.class));
+        verify(languageRepository, times(1)).save(any(Language.class));
+    }
+
+    @Test
+    public void testAddListOfTextToLanguage_LanguageRepositoryIsNull() {
+        // Arrange
+        List<Text> texts = new ArrayList<>();
+        Text text = new Text();
+        text.setId(1L);
+        text.setContent("Text 1");
+        texts.add(text);
+
+        // Act & Assert
+        Assertions.assertThrows(BadRequestException.class, () -> {
+            textService.addListOfTextToLanguage(texts, 1L);
+        });
+    }
+
+    @Test
+    public void testAddListOfTextToLanguage_LanguageNotFound() {
+        // Arrange
+        Long languageId = 1L;
+        List<Text> texts = new ArrayList<>();
+        Text text = new Text();
+        text.setId(1L);
+        text.setContent("Text 1");
+        texts.add(text);
+
+        when(languageRepository.findById(languageId)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        Assertions.assertThrows(BadRequestException.class, () -> {
+            textService.addListOfTextToLanguage(texts, languageId);
+        });
     }
 }

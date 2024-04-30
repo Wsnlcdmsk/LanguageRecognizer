@@ -171,20 +171,23 @@ class InMemoryTagServiceTest {
     void testNoTagExists(String methodName) {
         when(tagRepository.findByName(tagName)).thenReturn(Optional.empty());
         switch (methodName) {
-            case "getTagByName": {
-                assertThrows(ResourceNotFoundException.class, () -> tagService.getTagByName(tagName));
+            case "getTagByName":
+                assertThrows(ResourceNotFoundException.class, () -> {
+                    tagService.getTagByName(tagName);
+                });
                 break;
-            }
-            case "deleteTag": {
-                assertThrows(ResourceNotFoundException.class, () -> tagService.deleteTag(tagService.
-                        getTagByName(tagName).getId()));
+
+            case "deleteTag":
+                assertThrows(ResourceNotFoundException.class, () -> {
+                    tagService.deleteTag(tagService.getTagByName(tagName).getId());
+                });
                 break;
-            }
-            case "getTagById": {
-                assertThrows(ResourceNotFoundException.class, () -> tagService.getTagById(tagService.
-                        getTagByName(tagName).getId()));
+
+            case "getTagById":
+                assertThrows(ResourceNotFoundException.class, () -> {
+                    tagService.getTagById(tagService.getTagByName(tagName).getId());
+                });
                 break;
-            }
         }
     }
     @Test
