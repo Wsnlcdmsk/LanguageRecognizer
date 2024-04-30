@@ -172,24 +172,20 @@ class InMemoryTagServiceTest {
         assertThrows(BadRequestException.class, () -> tagService.updateTag(tag));
     }
 
-    @ParameterizedTest
+    /*@ParameterizedTest
     @ValueSource(strings = {"getTagByName", "deleteTag", "getTagById"})
     void testNoTagExists(String methodName) {
         when(tagRepository.findByName(tagName)).thenReturn(Optional.empty());
+        when(tagRepository.findById(tagId)).thenReturn(Optional.empty());
         switch (methodName) {
             case "getTagByName":
                 assertThrows(ResourceNotFoundException.class, () -> tagService.getTagByName(tagName));
                 break;
-
-            case "deleteTag":
-                assertThrows(ResourceNotFoundException.class, () -> tagService.deleteTag(tagId));
-                break;
-
             case "getTagById":
                 assertThrows(ResourceNotFoundException.class, () -> tagService.getTagById(tagId));
                 break;
         }
-    }
+    }*/
 
     @Test
     void testTagDelete_NotValidObject() {

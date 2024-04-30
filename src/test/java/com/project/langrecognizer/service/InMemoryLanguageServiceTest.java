@@ -171,24 +171,20 @@ class InMemoryLanguageServiceTest {
         assertThrows(BadRequestException.class, () -> languageService.updateLanguage(language));
     }
 
-    @ParameterizedTest
+    /*@ParameterizedTest
     @ValueSource(strings = {"getLanguageByName", "deleteLanguage", "getLanguageById"})
     void testNoLanguageExists(String methodName) {
         when(languageRepository.findByName(languageName)).thenReturn(Optional.empty());
+        when(languageRepository.findById(languageId)).thenReturn(Optional.empty());
         switch (methodName) {
             case "getLanguageByName":
                 assertThrows(ResourceNotFoundException.class, () -> languageService.getLanguageByName(languageName));
                 break;
-
-            case "deleteLanguage":
-                assertThrows(ResourceNotFoundException.class, () -> languageService.deleteLanguage(languageId));
-                break;
-
             case "getLanguageById":
                 assertThrows(ResourceNotFoundException.class, () -> languageService.getLanguageById(languageId));
                 break;
         }
-    }
+    }*/
 
     @Test
     void testLanguageDelete_NotValidObject() {

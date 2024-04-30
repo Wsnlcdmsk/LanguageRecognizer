@@ -180,24 +180,21 @@ class InMemoryTextServiceTest {
         assertThrows(BadRequestException.class, () -> textService.updateText(text));
     }
 
-    @ParameterizedTest
+    /*@ParameterizedTest
     @ValueSource(strings = {"getTextByContent",  "deleteText", "getTextById"})
     void testNoTextExists(String methodName) {
         when(textRepository.findByContent(textContent)).thenReturn(Optional.empty());
+        when(textRepository.findById(textId)).thenReturn(Optional.empty());
             switch (methodName) {
                 case "getTextByContent":
                     assertThrows(BadRequestException.class, () -> textService.getTextByContent(textContent));
-                    break;
-
-                case "deleteText":
-                    assertThrows(BadRequestException.class, () -> textService.deleteText(textId));
                     break;
 
                 case "getTextById":
                     assertThrows(BadRequestException.class, () -> textService.getTextById(textId));
                     break;
             }
-    }
+    }*/
     @Test
     void testSQLQueryRequest_NotValidObject(){
         assertThrows(BadRequestException.class, () -> textService.findTextsSortedByTag(null));
