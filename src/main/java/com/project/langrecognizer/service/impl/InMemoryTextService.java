@@ -196,7 +196,6 @@ public class InMemoryTextService implements TextService {
         existingText.setContent(text.getContent());
         existingText.setLanguage(text.getLanguage());
         existingText.setTags(text.getTags());
-        textRepository.deleteById(text.getId());
         textRepository.save(existingText);
         return mapper.toDTO(text);
     }
