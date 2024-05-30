@@ -8,6 +8,7 @@ import com.project.langrecognizer.model.Language;
 
 import java.util.List;
 
+
 public interface LanguageService {
 
     /**

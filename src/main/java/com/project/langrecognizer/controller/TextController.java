@@ -10,18 +10,23 @@ import com.project.langrecognizer.service.TextService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/text")
-@AllArgsConstructor
 @CrossOrigin
 public class TextController {
     /** The service for performing operations
      * related to texts. */
     private TextService service;
+
+    @Autowired
+    public TextController(TextService service) {
+        this.service = service;
+    }
 
 
     /**

@@ -10,18 +10,23 @@ import com.project.langrecognizer.service.TagService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/tag")
-@AllArgsConstructor
 @CrossOrigin
 public class TagController {
     /** The service for performing operations
      * related to tags. */
     private TagService service;
+
+    @Autowired
+    public TagController(TagService service) {
+        this.service = service;
+    }
 
 
     /**

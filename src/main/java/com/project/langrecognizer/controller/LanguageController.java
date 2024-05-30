@@ -9,6 +9,7 @@ import com.project.langrecognizer.model.Language;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.project.langrecognizer.service.LanguageService;
 
@@ -19,13 +20,16 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/v1/language")
-@AllArgsConstructor
 @CrossOrigin
 public class LanguageController {
 
     /** The service for performing operations
      * related to languages. */
     private final LanguageService languageService;
+@Autowired
+    public LanguageController(LanguageService languageService) {
+        this.languageService = languageService;
+    }
 
 
     /**
