@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 Dockerfile
 .front
+.env
 
 ### STS ###
 .apt_generated
