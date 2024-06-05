@@ -14,7 +14,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.project.langrecognizer.LangRecognizerApplication.javan</mainClass>
+					<mainClass>com.project.langrecognizer.LangRecognizerApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -51,8 +51,9 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.3.1</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
